@@ -1,0 +1,2847 @@
+# This file has been auto-generated. Do not edit manually.
+# If you would like to contribute new rules, please use 
+# cmd/generate/config/main.go and follow the contributing guidelines
+# at https://github.com/zricethezav/gitleaks/blob/master/CONTRIBUTING.md
+
+# This is the default gitleaks configuration file.
+# Rules and allowlists are defined within this file.
+# Rules instruct gitleaks on what should be considered a secret.
+# Allowlists instruct gitleaks on what is allowed, i.e. not a secret.
+
+title = "gitleaks config"
+
+[allowlist]
+description = "global allow lists"
+paths = [
+    '''gitleaks.toml''',
+    '''(.*?)(jpg|gif|doc|docx|zip|xls|pdf|bin|svg|socket|vsidx|v2|suo|wsuo|.dll|pdb|exe)$''',
+    '''(go.mod|go.sum)$''',
+    '''gradle.lockfile''',
+    '''node_modules''',
+    '''package-lock.json''',
+    '''yarn.lock''',
+    '''pnpm-lock.yaml''',
+    '''Database.refactorlog''',
+    '''vendor''',
+]
+
+[[rules]]
+id = "Detected Adafruit API Key"
+description = "The scanner has detected a potential Adafruit API Key within the codebase. These keys provide programmatic access to Adafruit services, a platform known for its IoT (Internet of Things) and electronics components and services. If such keys are not securely handled or are exposed, they could lead to unauthorized access to Adafruit services, potentially compromising IoT device management and leading to sensitive data exposure. It is crucial to ensure the secure management and storage of Adafruit API Keys to protect against unauthorized access and maintain the confidentiality and integrity of your IoT infrastructure and data."
+regex = '''(?i)(?:adafruit)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9_-]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "adafruit",
+]
+
+[[rules]]
+id = "Detected Adobe OAuth Web Client ID"
+description = "The scanner has detected a pattern that resembles an Adobe OAuth Web Client ID within the codebase. These Client IDs are used as part of the OAuth authentication process, facilitating secure integrations with Adobe's suite of services. If these credentials are not securely managed or are inadvertently exposed, they could pose a risk of compromised Adobe integrations, potentially leading to unauthorized access and data breaches. It is imperative to ensure that Adobe OAuth Web Client IDs are handled with the highest level of security and stored securely to protect your integrations and maintain the confidentiality and integrity of your data."
+regex = '''(?i)(?:adobe)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "adobe",
+]
+
+[[rules]]
+id = "Detected Adobe Client Secret"
+description = "The scanner has detected a potential Adobe Client Secret within the codebase. Client Secrets, in conjunction with Client IDs, are critical components of the OAuth authentication process, enabling secure and authorized interactions with Adobe services. If these secrets are not adequately protected or accidentally exposed, they could allow unauthorized access to Adobe services, potentially leading to data manipulation or breaches. Ensuring the secure handling, encryption, and storage of Adobe Client Secrets is crucial to prevent unauthorized access and maintain the security and integrity of your integrations with Adobe services."
+regex = '''(?i)\b((p8e-)(?i)[a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "p8e-",
+]
+
+[[rules]]
+id = "Detected Age Secret Key"
+description = "The scanner has detected a potential Age Secret Key within the codebase. Age is a simple, modern, and secure file encryption tool, and its secret keys are crucial for decrypting protected data. If these secret keys are not securely managed or are inadvertently exposed, they could risk unauthorized data decryption and access to sensitive information, potentially leading to data breaches and compromise of data confidentiality. It is essential to ensure the secure handling and storage of Age Secret Keys to protect against unauthorized access and maintain the security and privacy of your encrypted data."
+regex = '''AGE-SECRET-KEY-1[QPZRY9X8GF2TVDW0S3JN54KHCE6MUA7L]{58}'''
+keywords = [
+    "age-secret-key-1",
+]
+
+[[rules]]
+id = "Detected Airtable API Key"
+description = "The scanner has detected a possible Airtable API Key within the codebase. Airtable API Keys are used to interact programmatically with Airtable, a flexible database and spreadsheet hybrid platform. If these keys are not securely managed or are exposed, they could potentially compromise database access, leading to data leakage or unauthorized data alteration. Ensuring the secure handling, storage, and management of Airtable API Keys is critical to protect your database content and prevent unauthorized access, thereby maintaining the confidentiality, integrity, and availability of your data."
+regex = '''(?i)(?:airtable)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{17})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "airtable",
+]
+
+[[rules]]
+id = "Detected Algolia API Key"
+description = "The scanner has detected an Algolia API Key within the codebase. Algolia API Keys are integral for interacting with Algolia's search-as-a-service platform, facilitating powerful search functionalities and data retrieval. If these keys are not securely managed or are inadvertently exposed, they could result in unauthorized search operations and data exposure on platforms managed by Algolia. It is crucial to ensure the secure handling and storage of Algolia API Keys to protect against unauthorized access and maintain the confidentiality, integrity, and efficiency of your search operations and associated data."
+regex = '''(?i)(?:algolia)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "algolia",
+]
+
+[[rules]]
+id = "Detected Alibaba Cloud AccessKey ID"
+description = "The scanner has detected an Alibaba Cloud AccessKey ID within the codebase. AccessKey IDs, in conjunction with secret access keys, are used to securely authenticate and authorize access to Alibaba Cloud services. If these credentials are not securely managed or are exposed, they could pose a risk of unauthorized cloud resource access, potentially leading to data compromise or unauthorized operations within the cloud environment. Ensuring the secure handling, storage, and management of Alibaba Cloud AccessKey IDs is crucial to protect your cloud resources and maintain the confidentiality, integrity, and security of your data and cloud-based operations."
+regex = '''(?i)\b((LTAI)(?i)[a-z0-9]{20})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "ltai",
+]
+
+[[rules]]
+id = "Detected Alibaba Cloud Secret Key"
+description = "The scanner has detected a potential Alibaba Cloud Secret Key within the codebase. Secret Keys, in tandem with AccessKey IDs, form the credentials required for programmatic access to Alibaba Cloud services, enabling various operations and data management within the cloud environment. If these Secret Keys are not securely managed or are inadvertently exposed, they could allow unauthorized operations and data access within Alibaba Cloud, potentially leading to data breaches or unauthorized resource manipulation. It is imperative to ensure that Alibaba Cloud Secret Keys are handled with the highest level of security, including secure storage and management, to protect your cloud infrastructure and maintain the confidentiality and integrity of your data and operations."
+regex = '''(?i)(?:alibaba)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{30})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "alibaba",
+]
+
+[[rules]]
+id = "Detected Asana Client ID"
+description = "The scanner has detected a potential Asana Client ID within the codebase. Client IDs are utilized as part of the authentication process, specifically in integrating and interacting with Asana's project management and task tracking services. If these IDs are not securely managed or are inadvertently exposed, they could risk unauthorized access to Asana projects, potentially leading to exposure or manipulation of sensitive task information. Ensuring the secure handling and storage of Asana Client IDs is crucial to protect your project management data and maintain the confidentiality and integrity of your tasks and workflows."
+regex = '''(?i)(?:asana)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9]{16})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "asana",
+]
+
+[[rules]]
+id = "Detected Asana Client Secret"
+description = "The scanner has detected an Asana Client Secret within the codebase. Client Secrets, paired with Client IDs, are crucial for the secure authentication and authorization process, especially in integrations with Asana's project management platform. If these secrets are not properly secured or are inadvertently exposed, they could lead to compromised project management integrity and unauthorized access to Asana's services, potentially resulting in unauthorized access or manipulation of project data. It is imperative to ensure that Asana Client Secrets are handled with the utmost care and stored securely to maintain the security and confidentiality of your project management workflows and protect sensitive information."
+regex = '''(?i)(?:asana)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "asana",
+]
+
+[[rules]]
+id = "Detected Atlassian API Token"
+description = "The scanner has detected an Atlassian API Token within the codebase. These tokens are used to authenticate and interact programmatically with Atlassian's suite of project management and collaboration tools, including Jira and Confluence. If these tokens are not securely managed or are inadvertently exposed, they could pose a threat to the security of your project management and collaboration tools, potentially leading to unauthorized access and compromising data confidentiality. It is crucial to ensure the secure handling and storage of Atlassian API Tokens to protect your project infrastructure and maintain the confidentiality, integrity, and availability of your collaboration data and workflows."
+regex = '''(?i)(?:atlassian|confluence|jira)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{24})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "atlassian","confluence","jira",
+]
+
+[[rules]]
+id = "Detected Authress Service Client Access Key"
+description = "The scanner has detected a possible Authress Service Client Access Key within the codebase. These access keys are critical for interacting with Authress, a service that provides fine-grained access control and permissions management. If these keys are not securely managed or are exposed, they could compromise the integrity of access control services, potentially leading to unauthorized access and sensitive data exposure. Ensuring the secure handling, storage, and management of Authress Service Client Access Keys is crucial to protect your access control configurations and maintain the confidentiality and security of your data and services."
+regex = '''(?i)\b((?:sc|ext|scauth|authress)_[a-z0-9]{5,30}\.[a-z0-9]{4,6}\.acc[_-][a-z0-9-]{10,32}\.[a-z0-9+/_=-]{30,120})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "sc_","ext_","scauth_","authress_",
+]
+
+[[rules]]
+id = "Detected Potential AWS Access Token"
+description = "The scanner has detected a pattern that may indicate the presence of AWS Access Tokens within the codebase. These credentials are vital for programmatic access to Amazon Web Services, allowing operations on cloud resources and data management. If these tokens are not securely managed or are exposed, they could risk unauthorized cloud resource access and potentially lead to data breaches on AWS platforms. It is imperative to ensure the secure handling, storage, and management of AWS Access Tokens to protect your cloud infrastructure, maintain the confidentiality of your data, and safeguard against unauthorized access and data compromise."
+regex = '''(?:A3T[A-Z0-9]|AKIA|ASIA|ABIA|ACCA)[A-Z0-9]{16}'''
+keywords = [
+    "akia","asia","abia","acca",
+]
+
+[[rules]]
+id = "Detected Beamer API Token"
+description = "The scanner has detected a Beamer API Token within the codebase. These tokens are utilized to authenticate and interact with Beamer, a platform designed for managing and delivering notifications and content updates to users. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise content management systems, leading to the exposure of sensitive notifications and updates. It is critical to ensure the secure handling and storage of Beamer API Tokens to protect your content delivery infrastructure and maintain the confidentiality and integrity of your notifications and content updates."
+regex = '''(?i)(?:beamer)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(b_[a-z0-9=_\-]{44})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "beamer",
+]
+
+[[rules]]
+id = "Detected Bitbucket Client ID"
+description = "The scanner has detected a potential Bitbucket Client ID within the codebase. Client IDs are utilized as part of the OAuth authentication process, granting integrations and automated access to Bitbucket's version control services. If these Client IDs are not securely managed or are exposed, they could risk unauthorized repository access, potentially leading to codebase exposure or manipulation. Ensuring the secure handling and storage of Bitbucket Client IDs is crucial to protect your version control environment and maintain the confidentiality, integrity, and security of your code repositories."
+regex = '''(?i)(?:bitbucket)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "bitbucket",
+]
+
+[[rules]]
+id = "Detected Bitbucket Client Secret"
+description = "The scanner has detected a potential Bitbucket Client Secret within the codebase. Client Secrets, when paired with Client IDs, form the backbone of secure OAuth authentication for Bitbucket integrations, providing access to code repositories and version control functionalities. If these secrets are not properly safeguarded or are inadvertently exposed, they could pose a risk of compromised code repositories and unauthorized access, potentially leading to data breaches or unauthorized code manipulation. It is imperative to ensure that Bitbucket Client Secrets are handled with the utmost care and stored securely to maintain the security and integrity of your version control systems and protect sensitive codebase information."
+regex = '''(?i)(?:bitbucket)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "bitbucket",
+]
+
+[[rules]]
+id = "Detected Bittrex Access Key"
+description = "The scanner has detected a Bittrex Access Key within the codebase. These keys are used to interact with Bittrex, a major platform for cryptocurrency trading, allowing automated trading operations and account management. If these Access Keys are not securely managed or are inadvertently exposed, they could lead to unauthorized access to cryptocurrency trading accounts, potentially resulting in unauthorized trades and significant financial loss. Ensuring the secure handling, storage, and management of Bittrex Access Keys is crucial to protect your trading operations and safeguard against unauthorized access and financial risks."
+regex = '''(?i)(?:bittrex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "bittrex",
+]
+
+[[rules]]
+id = "Detected Bittrex Secret Key"
+description = "The scanner has detected a Bittrex Secret Key within the codebase. Secret Keys, in conjunction with Access Keys, are essential for securing and authorizing interactions with Bittrex's cryptocurrency trading platform. If these keys are not adequately protected or are exposed, they could potentially compromise the security of cryptocurrency transactions, leading to unauthorized trades and jeopardizing financial security. It is imperative to ensure that Bittrex Secret Keys are handled with the highest level of security, including secure storage and management, to protect your trading operations and maintain the confidentiality and integrity of your financial transactions."
+regex = '''(?i)(?:bittrex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "bittrex",
+]
+
+[[rules]]
+id = "Detected Clojars API Token"
+description = "The scanner has detected a possible Clojars API Token within the codebase. These tokens are used for authentication and interaction with Clojars, a popular repository for Clojure libraries, facilitating the management and deployment of library packages. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to Clojure libraries, potentially leading to code manipulation or unauthorized library modifications. Ensuring the secure handling, storage, and management of Clojars API Tokens is crucial to protect your library repositories and maintain the integrity and security of your codebase."
+regex = '''(?i)(CLOJARS_)[a-z0-9]{60}'''
+keywords = [
+    "clojars",
+]
+
+[[rules]]
+id = "Detected Potential Codecov Access Token"
+description = "The scanner has detected a pattern resembling a Codecov Access Token within the codebase. These tokens are crucial for accessing Codecov, a platform used for measuring the test coverage of code and ensuring code quality. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk of unauthorized access to code coverage reports and sensitive data, potentially compromising the integrity of your software testing and quality assurance processes. It is vital to ensure the secure handling, storage, and management of Codecov Access Tokens to protect your code coverage data and maintain the confidentiality and integrity of your testing infrastructure."
+regex = '''(?i)(?:codecov)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "codecov",
+]
+
+[[rules]]
+id = "Detected Coinbase Access Token"
+description = "The scanner has detected a Coinbase Access Token within the codebase. These tokens are used for programmatic access to Coinbase, a leading platform for cryptocurrency transactions and account management. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk of unauthorized access to cryptocurrency accounts and financial transactions, potentially leading to unauthorized trades or financial loss. Ensuring the secure handling, storage, and management of Coinbase Access Tokens is crucial to protect your cryptocurrency accounts and maintain the security and integrity of your financial transactions."
+regex = '''(?i)(?:coinbase)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9_-]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "coinbase",
+]
+
+[[rules]]
+id = "Detected Confluent Access Token"
+description = "The scanner has detected a Confluent Access Token within the codebase. These tokens are essential for accessing Confluent, a comprehensive platform for managing and streaming data in real-time. If these tokens are not securely managed or are inadvertently exposed, they could compromise access to your streaming data platforms, potentially leading to unauthorized access and affecting the integrity of sensitive data flows. It is imperative to ensure the secure handling, storage, and management of Confluent Access Tokens to protect your data streaming infrastructure and safeguard the confidentiality and continuity of your data streams."
+regex = '''(?i)(?:confluent)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{16})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "confluent",
+]
+
+[[rules]]
+id = "Detected Confluent Secret Key"
+description = "The scanner has detected a Confluent Secret Key within the codebase. Secret Keys, alongside Access Tokens, form the foundation for secure authentication and authorization within Confluent's data streaming services. If these keys are not adequately protected or are exposed, they could potentially risk unauthorized operations and data access within Confluent services, jeopardizing the security and integrity of your data streaming infrastructure. It is crucial to ensure that Confluent Secret Keys are handled with the highest level of security, including secure storage and management, to protect your data streaming services and maintain the confidentiality and integrity of your data operations."
+regex = '''(?i)(?:confluent)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "confluent",
+]
+
+[[rules]]
+id = "Detected Contentful Delivery API Token"
+description = "The scanner has detected a Contentful Delivery API Token within the codebase. These tokens provide programmatic access to Contentful, a content management platform, specifically enabling the retrieval and delivery of content stored within Contentful's CMS. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to your content management systems, potentially leading to unauthorized content access or affecting the integrity of your data. Ensuring the secure handling, storage, and management of Contentful Delivery API Tokens is crucial to protect your content infrastructure and maintain the confidentiality and integrity of your managed content and data."
+regex = '''(?i)(?:contentful)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{43})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "contentful",
+]
+
+[[rules]]
+id = "Detected Databricks API Token"
+description = "The scanner has detected a Databricks API Token within the codebase. These tokens are used for authenticating and interacting with Databricks, a platform known for its comprehensive big data analytics and sensitive data processing capabilities. If these tokens are not securely managed or are inadvertently exposed, they could compromise the integrity of big data analytics platforms, potentially leading to unauthorized access or manipulation of sensitive data processing operations. It is imperative to ensure the secure handling, storage, and management of Databricks API Tokens to protect your data analytics infrastructure and maintain the confidentiality, integrity, and security of your data."
+regex = '''(?i)\b(dapi[a-h0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "dapi",
+]
+
+[[rules]]
+id = "Detected Datadog Access Token"
+description = "The scanner has detected a Datadog Access Token within the codebase. These tokens are critical for accessing Datadog, a monitoring and analytics platform that provides insights into application performance and operational data. If these tokens are not securely managed or are inadvertently exposed, they could potentially risk the exposure and manipulation of monitoring and analytics data, undermining the integrity of your operational insights and data security. Ensuring the secure handling, storage, and management of Datadog Access Tokens is crucial to protect your monitoring infrastructure and maintain the confidentiality and reliability of your analytics data."
+regex = '''(?i)(?:datadog)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "datadog",
+]
+
+[[rules]]
+id = "Detected Defined Networking API Token"
+description = "The scanner has detected a Defined Networking API Token within the codebase. These tokens are essential for interfacing with Defined Networking services, enabling programmatic control and management of network operations. If these tokens are not securely managed or are inadvertently exposed, they could lead to unauthorized network operations and data breaches, potentially compromising network security and data integrity. It is crucial to ensure the secure handling, storage, and management of Defined Networking API Tokens to protect your network infrastructure and maintain the confidentiality, integrity, and security of your network operations and data."
+regex = '''(?i)(?:dnkey)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(dnkey-[a-z0-9=_\-]{26}-[a-z0-9=_\-]{52})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "dnkey",
+]
+
+[[rules]]
+id = "Detected DigitalOcean OAuth Access Token"
+description = "The scanner has detected a DigitalOcean OAuth Access Token within the codebase. These tokens are integral for authenticating and authorizing interactions with DigitalOcean's cloud services, enabling the management and deployment of cloud resources. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to cloud resources and potentially lead to data compromise, undermining the security of your cloud infrastructure. Ensuring the secure handling, storage, and management of DigitalOcean OAuth Access Tokens is crucial to protect your cloud operations and maintain the confidentiality, integrity, and availability of your cloud-based data and resources."
+regex = '''(?i)\b(doo_v1_[a-f0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "doo_v1_",
+]
+
+[[rules]]
+id = "Detected DigitalOcean Personal Access Token"
+description = "The scanner has detected a DigitalOcean Personal Access Token (PAT) within the codebase. PATs provide authenticated access to DigitalOcean's cloud services, allowing users to manage and control their cloud infrastructure programmatically. If these tokens are not securely managed or are inadvertently exposed, they could pose a significant threat to cloud infrastructure security and data privacy, potentially leading to unauthorized access or manipulation of cloud resources. It is vital to ensure the secure handling, storage, and management of DigitalOcean Personal Access Tokens to safeguard your cloud infrastructure and maintain the confidentiality and integrity of your data."
+regex = '''(?i)\b(dop_v1_[a-f0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "dop_v1_",
+]
+
+[[rules]]
+id = "Detected DigitalOcean OAuth Refresh Token"
+description = "The scanner has detected a DigitalOcean OAuth Refresh Token within the codebase. Refresh tokens are part of the OAuth authentication process, designed to maintain access to DigitalOcean services without requiring frequent re-authentication. If these tokens are compromised or improperly handled, they could enable prolonged unauthorized access to cloud services, potentially leading to resource manipulation or data breaches. Ensuring the secure handling, storage, and management of DigitalOcean OAuth Refresh Tokens is crucial to prevent unauthorized access and maintain the integrity and security of your cloud infrastructure and operations."
+regex = '''(?i)\b(dor_v1_[a-f0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "dor_v1_",
+]
+
+[[rules]]
+id = "Detected Discord API Token"
+description = "The scanner has detected a Discord API Token within the codebase. These tokens are used for programmatic interactions with Discord, a popular communication platform, enabling the automation of tasks and integration of services. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise communication channels and user data privacy on Discord, leading to unauthorized access or manipulation of messages and data. It is critical to ensure the secure handling, storage, and management of Discord API Tokens to protect your communication infrastructure and maintain the confidentiality and integrity of user data and interactions."
+regex = '''(?i)(?:discord)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "discord",
+]
+
+[[rules]]
+id = "Detected Discord Client ID"
+description = "The scanner has detected a Discord Client ID within the codebase. Client IDs are used to identify applications integrating with Discord, enabling features and interactions within Discord communities. If these IDs are not securely managed or are inadvertently exposed, they could lead to unauthorized integrations and potentially expose data within Discord applications, risking the privacy and integrity of user interactions. Ensuring the secure handling and storage of Discord Client IDs is crucial to protect your integrations and maintain the confidentiality and integrity of your Discord applications and user data."
+regex = '''(?i)(?:discord)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9]{18})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "discord",
+]
+
+[[rules]]
+id = "Detected Discord Client Secret"
+description = "The scanner has detected a potential Discord Client Secret within the codebase. Client Secrets, paired with Client IDs, are critical components of the authentication process for Discord bot integrations, enabling secure and authorized interactions within Discord servers. If these secrets are not adequately protected or are inadvertently exposed, they could risk compromising Discord bot integrations, potentially leading to unauthorized actions or data leaks. Ensuring the secure handling, encryption, and storage of Discord Client Secrets is crucial to prevent unauthorized access and maintain the security and integrity of your Discord bot integrations and the data they interact with."
+regex = '''(?i)(?:discord)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "discord",
+]
+
+[[rules]]
+id = "Detected Doppler API Token"
+description = "The scanner has detected a Doppler API Token within the codebase. These tokens are used to authenticate and interact with Doppler, a platform known for its robust environment and secrets management solutions. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to the security of environment configurations and secret management, potentially leading to unauthorized access or exposure of sensitive information. It is critical to ensure the secure handling, storage, and management of Doppler API Tokens to protect your infrastructure's configuration and maintain the confidentiality and integrity of your secrets and sensitive data."
+regex = '''(dp\.pt\.)(?i)[a-z0-9]{43}'''
+keywords = [
+    "doppler",
+]
+
+[[rules]]
+id = "Detected Droneci Access Token"
+description = "The scanner has detected a Droneci Access Token within the codebase. These tokens are crucial for authenticating and interacting with Droneci, a Continuous Integration and Continuous Deployment (CI/CD) platform that automates the build, test, and deployment processes. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise CI/CD workflows, leading to unauthorized access or disruptions in the build and deployment processes. Ensuring the secure handling, storage, and management of Droneci Access Tokens is critical to protect your CI/CD infrastructure and maintain the integrity and reliability of your automated workflows."
+regex = '''(?i)(?:droneci)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "droneci",
+]
+
+[[rules]]
+id = "Detected Dropbox API Token"
+description = "The scanner has detected a Dropbox API Token within the codebase. These tokens are utilized to programmatically interact with Dropbox, a widely-used file storage and sharing service. If these tokens are not securely managed or are inadvertently exposed, they could lead to unauthorized file access and potentially result in data breaches within Dropbox storage. Ensuring the secure handling, storage, and management of Dropbox API Tokens is critical to protect your stored files and maintain the confidentiality, integrity, and availability of your data on Dropbox."
+regex = '''(?i)(?:dropbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{15})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "dropbox",
+]
+
+[[rules]]
+id = "Detected Dropbox Long-Lived API Token"
+description = "The scanner has detected a Dropbox Long-Lived API Token within the codebase. These tokens offer extended access to Dropbox's cloud storage services, facilitating file management and data integration over longer periods. If these long-lived tokens are not securely managed or are exposed, they could risk prolonged unauthorized access to cloud storage, potentially leading to sensitive data exposure or data breaches. Proper handling and secure storage of Dropbox Long-Lived API Tokens are paramount to prevent extended unauthorized access and protect sensitive data."
+regex = '''(?i)(?:dropbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{11}(AAAAAAAAAA)[a-z0-9\-_=]{43})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "dropbox",
+]
+
+[[rules]]
+id = "Detected Dropbox Short-Lived API Token"
+description = "The scanner has detected a Dropbox Short-Lived API Token within the codebase. These tokens are designed for temporary access to Dropbox's cloud storage services, allowing short-term file management and data integration. Despite their limited lifespan, if these short-lived tokens are not securely managed or are exposed, they could pose a risk of temporary but potentially harmful unauthorized data access and manipulation. Secure handling and storage of Dropbox Short-Lived API Tokens are crucial to mitigate risks associated with temporary access and safeguard against unauthorized data interactions."
+regex = '''(?i)(?:dropbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(sl\.[a-z0-9\-=_]{135})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "dropbox",
+]
+
+[[rules]]
+id = "Detected Duffel API Token"
+description = "The scanner has detected a Duffel API Token within the codebase. These tokens provide authenticated access to Duffel, a platform that offers travel-related services and integrations. If these tokens are not securely managed or are inadvertently exposed, they could compromise travel platform integrations and potentially lead to exposure of sensitive customer data, including travel itineraries and personal information. Ensuring the secure handling and storage of Duffel API Tokens is essential to protect your travel service integrations and safeguard sensitive customer data."
+regex = '''duffel_(test|live)_(?i)[a-z0-9_\-=]{43}'''
+keywords = [
+    "duffel",
+]
+
+[[rules]]
+id = "Detected Dynatrace API Token"
+description = "The scanner has detected a Dynatrace API Token within the codebase. These tokens enable programmatic access to Dynatrace, a platform for application performance monitoring and management. If these tokens are not securely managed or are exposed, they could potentially risk the integrity of application performance monitoring, leading to data exposure or compromised monitoring data. Proper handling and secure storage of Dynatrace API Tokens are crucial to ensure the protection of your application performance data and prevent unauthorized access."
+regex = '''dt0c01\.(?i)[a-z0-9]{24}\.[a-z0-9]{64}'''
+keywords = [
+    "dynatrace",
+]
+
+[[rules]]
+id = "Detected EasyPost API Token"
+description = "The scanner has detected an EasyPost API Token within the codebase. These tokens grant programmatic access to EasyPost, a platform providing solutions for postal and shipment services. If these tokens are not securely managed or are inadvertently exposed, they could lead to unauthorized access to postal and shipment services, potentially resulting in data exposure and compromising the confidentiality of shipment details. Ensuring the secure handling and storage of EasyPost API Tokens is critical to protect your shipment services and safeguard sensitive data."
+regex = '''\bEZAK(?i)[a-z0-9]{54}'''
+keywords = [
+    "ezak",
+]
+
+[[rules]]
+id = "Detected EasyPost Test API Token"
+description = "The scanner has detected an EasyPost Test API Token within the codebase. These tokens are used specifically within test environments of EasyPost, facilitating the testing of postal and shipment service integrations. While intended for testing purposes, if these tokens are not securely managed or are inadvertently exposed, they could risk exposure of test environments and potentially lead to the unintended disclosure of sensitive shipment data. Secure handling and storage of EasyPost Test API Tokens are crucial to protect your testing environments and ensure the confidentiality of your shipment data during the testing phase."
+regex = '''\bEZTK(?i)[a-z0-9]{54}'''
+keywords = [
+    "eztk",
+]
+
+[[rules]]
+id = "Detected Etsy Access Token"
+description = "The scanner has detected an Etsy Access Token within the codebase. These tokens provide authenticated access to Etsy's API, enabling the management of shop listings, orders, and customer interactions. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise Etsy shop management and lead to unauthorized access to customer data. Ensuring the secure handling and storage of Etsy Access Tokens is vital to protect your shop's operations and maintain the confidentiality of customer data."
+regex = '''(?i)(?:etsy)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{24})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "etsy",
+]
+
+[[rules]]
+id = "Detected Facebook Access Token"
+description = "The scanner has detected a Facebook Access Token within the codebase. These tokens are crucial for authenticating and interacting with Facebook's platform, enabling integration with user profiles, content management, and social interactions. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk of unauthorized access to Facebook accounts and lead to personal data exposure. Proper handling and secure storage of Facebook Access Tokens are essential to prevent unauthorized account access and protect personal data."
+regex = '''(?i)(?:facebook)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "facebook",
+]
+
+[[rules]]
+id = "Detected Fastly API Token"
+description = "The scanner has detected a Fastly API Token within the codebase. These tokens are used to interact with Fastly's Content Delivery Network (CDN) and edge cloud services, managing content delivery and caching configurations. If these tokens are not securely managed or are inadvertently exposed, they could compromise CDN operations and edge cloud services, potentially leading to content delivery disruptions and security issues. Ensuring the secure handling and storage of Fastly API Tokens is critical to maintain the integrity of your content delivery infrastructure and safeguard your edge cloud services."
+regex = '''(?i)(?:fastly)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "fastly",
+]
+
+[[rules]]
+id = "Detected Finicity API Token"
+description = "The scanner has detected a Finicity API Token within the codebase. These tokens provide programmatic access to Finicity's financial data aggregation and insights services, enabling interactions with financial accounts and operations. If these tokens are not securely managed or are inadvertently exposed, they could potentially risk unauthorized access to financial data and enable unauthorized financial operations. Ensuring the secure handling and storage of Finicity API Tokens is crucial to protect financial data and prevent unauthorized financial activities."
+regex = '''(?i)(?:finicity)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "finicity",
+]
+
+[[rules]]
+id = "Detected Finicity Client Secret"
+description = "The scanner has detected a Finicity Client Secret within the codebase. Client Secrets, along with Client IDs, are fundamental for the secure authentication and integration with Finicity's financial services. If these secrets are not adequately protected or are exposed, they could lead to compromised financial service integrations and potential data breaches, risking the security and confidentiality of financial data. Ensuring the secure handling, storage, and management of Finicity Client Secrets is paramount to safeguard your financial integrations and protect sensitive financial information."
+regex = '''(?i)(?:finicity)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{20})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "finicity",
+]
+
+[[rules]]
+id = "Detected Finnhub Access Token"
+description = "The scanner has detected a Finnhub Access Token within the codebase. These tokens are used for accessing Finnhub, a platform providing financial market data and analytics. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to valuable financial market data and analytics, potentially leading to data misuse or compromised financial insights. Ensuring the secure handling and storage of Finnhub Access Tokens is essential to protect your access to financial data and maintain the integrity of your financial analytics."
+regex = '''(?i)(?:finnhub)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{20})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "finnhub",
+]
+
+[[rules]]
+id = "Detected Flickr Access Token"
+description = "The scanner has detected a Flickr Access Token within the codebase. These tokens grant programmatic access to Flickr, a popular online photo management and sharing platform. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk of unauthorized photo management, potentially leading to data leakage or unauthorized use of photographic content. Ensuring the secure handling and storage of Flickr Access Tokens is crucial to protect your photo collections and prevent unauthorized access or data leakage."
+regex = '''(?i)(?:flickr)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "flickr",
+]
+
+[[rules]]
+id = "Detected Flickr Access Token"
+description = "The scanner has detected a Flickr Access Token within the codebase. These tokens grant programmatic access to Flickr, a popular online photo management and sharing platform. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk of unauthorized photo management, potentially leading to data leakage or unauthorized use of photographic content. Ensuring the secure handling and storage of Flickr Access Tokens is crucial to protect your photo collections and prevent unauthorized access or data leakage."
+regex = '''FLWSECK_TEST-(?i)[a-h0-9]{12}'''
+keywords = [
+    "flwseck_test",
+]
+
+[[rules]]
+id = "Detected Flutterwave Public Key"
+description = "The scanner has detected a Flutterwave Public Key within the codebase. Public keys are part of the cryptographic operations used in payment processing and secure integrations on Flutterwave, a platform for handling financial transactions. If these keys are not securely managed or are inadvertently exposed, they could potentially expose public cryptographic operations and integrations, affecting the integrity of payment processing and secure communications. Ensuring the secure handling and storage of Flutterwave Public Keys is crucial to maintain the security of your cryptographic operations and financial integrations."
+regex = '''FLWPUBK_TEST-(?i)[a-h0-9]{32}-X'''
+keywords = [
+    "flwpubk_test",
+]
+
+[[rules]]
+id = "Detected Flutterwave Secret Key"
+description = "The scanner has detected a Flutterwave Secret Key within the codebase. Secret Keys, in conjunction with Public Keys, are used for secure authentication and transaction processing on Flutterwave, a platform that facilitates financial operations. If these keys are not securely managed or are inadvertently exposed, they could risk unauthorized financial transactions and data breaches, compromising the security of financial data and transaction integrity. Ensuring the secure handling, storage, and management of Flutterwave Secret Keys is paramount to safeguard your financial transactions and protect sensitive data."
+regex = '''FLWSECK_TEST-(?i)[a-h0-9]{32}-X'''
+keywords = [
+    "flwseck_test",
+]
+
+[[rules]]
+id = "Detected Frame.io API Token"
+description = "The scanner has detected a Frame.io API Token within the codebase. These tokens are used to authenticate and interact programmatically with Frame.io, a platform for video collaboration and project management. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise video collaboration efforts and project management, leading to unauthorized access or manipulation of video content and project data. Ensuring the secure handling and storage of Frame.io API Tokens is essential to protect your video projects and maintain the integrity of your collaborative efforts."
+regex = '''fio-u-(?i)[a-z0-9\-_=]{64}'''
+keywords = [
+    "fio-u-",
+]
+
+[[rules]]
+id = "Detected Freshbooks Access Token"
+description = "The scanner has detected a Freshbooks Access Token within the codebase. These tokens grant programmatic access to Freshbooks, a platform widely used for accounting and financial management. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to accounting software access, potentially leading to sensitive financial data exposure or unauthorized financial operations. Ensuring the secure handling and storage of Freshbooks Access Tokens is critical to protect your financial management systems and maintain the confidentiality and integrity of your financial data."
+regex = '''(?i)(?:freshbooks)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "freshbooks",
+]
+
+[[rules]]
+id = "Detected GCP API Key"
+description = "The scanner has detected a GCP (Google Cloud Platform) API Key within the codebase. These keys are essential for authenticating and interacting with Google Cloud services, enabling the management and deployment of cloud resources. If these API keys are not securely managed or are inadvertently exposed, they could lead to unauthorized access to Google Cloud services, potentially resulting in data breaches and compromised cloud infrastructure. Ensuring the secure handling, storage, and management of GCP API Keys is crucial to protect your cloud resources and maintain the confidentiality and integrity of your cloud-based data."
+regex = '''(?i)\b(AIza[0-9A-Za-z\\-_]{35})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "aiza",
+]
+
+[[rules]]
+id = "Detected Generic API Key"
+description = "The scanner has detected a Generic API Key within the codebase. These keys serve as a common means of authentication and authorization for various services, facilitating interactions and sensitive operations within applications. If these API keys are not securely managed or are inadvertently exposed, they could potentially expose access to a wide range of services and sensitive operations, leading to unauthorized use and potential security vulnerabilities. Ensuring the secure handling, storage, and management of Generic API Keys is essential to protect your services and safeguard against unauthorized access and data breaches."
+regex = '''(?i)(?:key|api|token|secret|client|passwd|password|auth|access)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-z\-_.=]{10,150})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+entropy = 3.5
+keywords = [
+    "key","api","token","secret","client","passwd","password","auth","access",
+]
+
+[rules.allowlist]
+stopwords = [
+    "000000",
+    "aaaaaa",
+    "about",
+    "abstract",
+    "academy",
+    "acces",
+    "account",
+    "act-",
+    "act.",
+    "act_",
+    "action",
+    "active",
+    "actively",
+    "activity",
+    "adapter",
+    "add-",
+    "add.",
+    "add_",
+    "add-on",
+    "addon",
+    "addres",
+    "admin",
+    "adobe",
+    "advanced",
+    "adventure",
+    "agent",
+    "agile",
+    "air-",
+    "air.",
+    "air_",
+    "ajax",
+    "akka",
+    "alert",
+    "alfred",
+    "algorithm",
+    "all-",
+    "all.",
+    "all_",
+    "alloy",
+    "alpha",
+    "amazon",
+    "amqp",
+    "analysi",
+    "analytic",
+    "analyzer",
+    "android",
+    "angular",
+    "angularj",
+    "animate",
+    "animation",
+    "another",
+    "ansible",
+    "answer",
+    "ant-",
+    "ant.",
+    "ant_",
+    "any-",
+    "any.",
+    "any_",
+    "apache",
+    "app-",
+    "app-",
+    "app.",
+    "app.",
+    "app_",
+    "app_",
+    "apple",
+    "arch",
+    "archive",
+    "archived",
+    "arduino",
+    "array",
+    "art-",
+    "art.",
+    "art_",
+    "article",
+    "asp-",
+    "asp.",
+    "asp_",
+    "asset",
+    "async",
+    "atom",
+    "attention",
+    "audio",
+    "audit",
+    "aura",
+    "auth",
+    "author",
+    "author",
+    "authorize",
+    "auto",
+    "automated",
+    "automatic",
+    "awesome",
+    "aws_",
+    "azure",
+    "back",
+    "backbone",
+    "backend",
+    "backup",
+    "bar-",
+    "bar.",
+    "bar_",
+    "base",
+    "based",
+    "bash",
+    "basic",
+    "batch",
+    "been",
+    "beer",
+    "behavior",
+    "being",
+    "benchmark",
+    "best",
+    "beta",
+    "better",
+    "big-",
+    "big.",
+    "big_",
+    "binary",
+    "binding",
+    "bit-",
+    "bit.",
+    "bit_",
+    "bitcoin",
+    "block",
+    "blog",
+    "board",
+    "book",
+    "bookmark",
+    "boost",
+    "boot",
+    "bootstrap",
+    "bosh",
+    "bot-",
+    "bot.",
+    "bot_",
+    "bower",
+    "box-",
+    "box.",
+    "box_",
+    "boxen",
+    "bracket",
+    "branch",
+    "bridge",
+    "browser",
+    "brunch",
+    "buffer",
+    "bug-",
+    "bug.",
+    "bug_",
+    "build",
+    "builder",
+    "building",
+    "buildout",
+    "buildpack",
+    "built",
+    "bundle",
+    "busines",
+    "but-",
+    "but.",
+    "but_",
+    "button",
+    "cache",
+    "caching",
+    "cakephp",
+    "calendar",
+    "call",
+    "camera",
+    "campfire",
+    "can-",
+    "can.",
+    "can_",
+    "canva",
+    "captcha",
+    "capture",
+    "card",
+    "carousel",
+    "case",
+    "cassandra",
+    "cat-",
+    "cat.",
+    "cat_",
+    "category",
+    "center",
+    "cento",
+    "challenge",
+    "change",
+    "changelog",
+    "channel",
+    "chart",
+    "chat",
+    "cheat",
+    "check",
+    "checker",
+    "chef",
+    "ches",
+    "chinese",
+    "chosen",
+    "chrome",
+    "ckeditor",
+    "clas",
+    "classe",
+    "classic",
+    "clean",
+    "cli-",
+    "cli.",
+    "cli_",
+    "client",
+    "client",
+    "clojure",
+    "clone",
+    "closure",
+    "cloud",
+    "club",
+    "cluster",
+    "cms-",
+    "cms_",
+    "coco",
+    "code",
+    "coding",
+    "coffee",
+    "color",
+    "combination",
+    "combo",
+    "command",
+    "commander",
+    "comment",
+    "commit",
+    "common",
+    "community",
+    "compas",
+    "compiler",
+    "complete",
+    "component",
+    "composer",
+    "computer",
+    "computing",
+    "con-",
+    "con.",
+    "con_",
+    "concept",
+    "conf",
+    "config",
+    "config",
+    "connect",
+    "connector",
+    "console",
+    "contact",
+    "container",
+    "contao",
+    "content",
+    "contest",
+    "context",
+    "control",
+    "convert",
+    "converter",
+    "conway'",
+    "cookbook",
+    "cookie",
+    "cool",
+    "copy",
+    "cordova",
+    "core",
+    "couchbase",
+    "couchdb",
+    "countdown",
+    "counter",
+    "course",
+    "craft",
+    "crawler",
+    "create",
+    "creating",
+    "creator",
+    "credential",
+    "crm-",
+    "crm.",
+    "crm_",
+    "cros",
+    "crud",
+    "csv-",
+    "csv.",
+    "csv_",
+    "cube",
+    "cucumber",
+    "cuda",
+    "current",
+    "currently",
+    "custom",
+    "daemon",
+    "dark",
+    "dart",
+    "dash",
+    "dashboard",
+    "data",
+    "database",
+    "date",
+    "day-",
+    "day.",
+    "day_",
+    "dead",
+    "debian",
+    "debug",
+    "debug",
+    "debugger",
+    "deck",
+    "define",
+    "del-",
+    "del.",
+    "del_",
+    "delete",
+    "demo",
+    "deploy",
+    "design",
+    "designer",
+    "desktop",
+    "detection",
+    "detector",
+    "dev-",
+    "dev.",
+    "dev_",
+    "develop",
+    "developer",
+    "device",
+    "devise",
+    "diff",
+    "digital",
+    "directive",
+    "directory",
+    "discovery",
+    "display",
+    "django",
+    "dns-",
+    "dns_",
+    "doc-",
+    "doc-",
+    "doc.",
+    "doc.",
+    "doc_",
+    "doc_",
+    "docker",
+    "docpad",
+    "doctrine",
+    "document",
+    "doe-",
+    "doe.",
+    "doe_",
+    "dojo",
+    "dom-",
+    "dom.",
+    "dom_",
+    "domain",
+    "done",
+    "don't",
+    "dot-",
+    "dot.",
+    "dot_",
+    "dotfile",
+    "download",
+    "draft",
+    "drag",
+    "drill",
+    "drive",
+    "driven",
+    "driver",
+    "drop",
+    "dropbox",
+    "drupal",
+    "dsl-",
+    "dsl.",
+    "dsl_",
+    "dynamic",
+    "easy",
+    "_ec2_",
+    "ecdsa",
+    "eclipse",
+    "edit",
+    "editing",
+    "edition",
+    "editor",
+    "element",
+    "emac",
+    "email",
+    "embed",
+    "embedded",
+    "ember",
+    "emitter",
+    "emulator",
+    "encoding",
+    "endpoint",
+    "engine",
+    "english",
+    "enhanced",
+    "entity",
+    "entry",
+    "env_",
+    "episode",
+    "erlang",
+    "error",
+    "espresso",
+    "event",
+    "evented",
+    "example",
+    "example",
+    "exchange",
+    "exercise",
+    "experiment",
+    "expire",
+    "exploit",
+    "explorer",
+    "export",
+    "exporter",
+    "expres",
+    "ext-",
+    "ext.",
+    "ext_",
+    "extended",
+    "extension",
+    "external",
+    "extra",
+    "extractor",
+    "fabric",
+    "facebook",
+    "factory",
+    "fake",
+    "fast",
+    "feature",
+    "feed",
+    "fewfwef",
+    "ffmpeg",
+    "field",
+    "file",
+    "filter",
+    "find",
+    "finder",
+    "firefox",
+    "firmware",
+    "first",
+    "fish",
+    "fix-",
+    "fix_",
+    "flash",
+    "flask",
+    "flat",
+    "flex",
+    "flexible",
+    "flickr",
+    "flow",
+    "fluent",
+    "fluentd",
+    "fluid",
+    "folder",
+    "font",
+    "force",
+    "foreman",
+    "fork",
+    "form",
+    "format",
+    "formatter",
+    "forum",
+    "foundry",
+    "framework",
+    "free",
+    "friend",
+    "friendly",
+    "front-end",
+    "frontend",
+    "ftp-",
+    "ftp.",
+    "ftp_",
+    "fuel",
+    "full",
+    "fun-",
+    "fun.",
+    "fun_",
+    "func",
+    "future",
+    "gaia",
+    "gallery",
+    "game",
+    "gateway",
+    "gem-",
+    "gem.",
+    "gem_",
+    "gen-",
+    "gen.",
+    "gen_",
+    "general",
+    "generator",
+    "generic",
+    "genetic",
+    "get-",
+    "get.",
+    "get_",
+    "getenv",
+    "getting",
+    "ghost",
+    "gist",
+    "git-",
+    "git.",
+    "git_",
+    "github",
+    "gitignore",
+    "gitlab",
+    "glas",
+    "gmail",
+    "gnome",
+    "gnu-",
+    "gnu.",
+    "gnu_",
+    "goal",
+    "golang",
+    "gollum",
+    "good",
+    "google",
+    "gpu-",
+    "gpu.",
+    "gpu_",
+    "gradle",
+    "grail",
+    "graph",
+    "graphic",
+    "great",
+    "grid",
+    "groovy",
+    "group",
+    "grunt",
+    "guard",
+    "gui-",
+    "gui.",
+    "gui_",
+    "guide",
+    "guideline",
+    "gulp",
+    "gwt-",
+    "gwt.",
+    "gwt_",
+    "hack",
+    "hackathon",
+    "hacker",
+    "hacking",
+    "hadoop",
+    "haml",
+    "handler",
+    "hardware",
+    "has-",
+    "has_",
+    "hash",
+    "haskell",
+    "have",
+    "haxe",
+    "hello",
+    "help",
+    "helper",
+    "here",
+    "hero",
+    "heroku",
+    "high",
+    "hipchat",
+    "history",
+    "home",
+    "homebrew",
+    "homepage",
+    "hook",
+    "host",
+    "hosting",
+    "hot-",
+    "hot.",
+    "hot_",
+    "house",
+    "how-",
+    "how.",
+    "how_",
+    "html",
+    "http",
+    "hub-",
+    "hub.",
+    "hub_",
+    "hubot",
+    "human",
+    "icon",
+    "ide-",
+    "ide.",
+    "ide_",
+    "idea",
+    "identity",
+    "idiomatic",
+    "image",
+    "impact",
+    "import",
+    "important",
+    "importer",
+    "impres",
+    "index",
+    "infinite",
+    "info",
+    "injection",
+    "inline",
+    "input",
+    "inside",
+    "inspector",
+    "instagram",
+    "install",
+    "installer",
+    "instant",
+    "intellij",
+    "interface",
+    "internet",
+    "interview",
+    "into",
+    "intro",
+    "ionic",
+    "iphone",
+    "ipython",
+    "irc-",
+    "irc_",
+    "iso-",
+    "iso.",
+    "iso_",
+    "issue",
+    "jade",
+    "jasmine",
+    "java",
+    "jbos",
+    "jekyll",
+    "jenkin",
+    "job-",
+    "job.",
+    "job_",
+    "joomla",
+    "jpa-",
+    "jpa.",
+    "jpa_",
+    "jquery",
+    "json",
+    "just",
+    "kafka",
+    "karma",
+    "kata",
+    "kernel",
+    "keyboard",
+    "kindle",
+    "kit-",
+    "kit.",
+    "kit_",
+    "kitchen",
+    "knife",
+    "koan",
+    "kohana",
+    "lab-",
+    "lab-",
+    "lab.",
+    "lab.",
+    "lab_",
+    "lab_",
+    "lambda",
+    "lamp",
+    "language",
+    "laravel",
+    "last",
+    "latest",
+    "latex",
+    "launcher",
+    "layer",
+    "layout",
+    "lazy",
+    "ldap",
+    "leaflet",
+    "league",
+    "learn",
+    "learning",
+    "led-",
+    "led.",
+    "led_",
+    "leetcode",
+    "les-",
+    "les.",
+    "les_",
+    "level",
+    "leveldb",
+    "lib-",
+    "lib.",
+    "lib_",
+    "librarie",
+    "library",
+    "license",
+    "life",
+    "liferay",
+    "light",
+    "lightbox",
+    "like",
+    "line",
+    "link",
+    "linked",
+    "linkedin",
+    "linux",
+    "lisp",
+    "list",
+    "lite",
+    "little",
+    "load",
+    "loader",
+    "local",
+    "location",
+    "lock",
+    "log-",
+    "log.",
+    "log_",
+    "logger",
+    "logging",
+    "logic",
+    "login",
+    "logstash",
+    "longer",
+    "look",
+    "love",
+    "lua-",
+    "lua.",
+    "lua_",
+    "mac-",
+    "mac.",
+    "mac_",
+    "machine",
+    "made",
+    "magento",
+    "magic",
+    "mail",
+    "make",
+    "maker",
+    "making",
+    "man-",
+    "man.",
+    "man_",
+    "manage",
+    "manager",
+    "manifest",
+    "manual",
+    "map-",
+    "map-",
+    "map.",
+    "map.",
+    "map_",
+    "map_",
+    "mapper",
+    "mapping",
+    "markdown",
+    "markup",
+    "master",
+    "math",
+    "matrix",
+    "maven",
+    "md5",
+    "mean",
+    "media",
+    "mediawiki",
+    "meetup",
+    "memcached",
+    "memory",
+    "menu",
+    "merchant",
+    "message",
+    "messaging",
+    "meta",
+    "metadata",
+    "meteor",
+    "method",
+    "metric",
+    "micro",
+    "middleman",
+    "migration",
+    "minecraft",
+    "miner",
+    "mini",
+    "minimal",
+    "mirror",
+    "mit-",
+    "mit.",
+    "mit_",
+    "mobile",
+    "mocha",
+    "mock",
+    "mod-",
+    "mod.",
+    "mod_",
+    "mode",
+    "model",
+    "modern",
+    "modular",
+    "module",
+    "modx",
+    "money",
+    "mongo",
+    "mongodb",
+    "mongoid",
+    "mongoose",
+    "monitor",
+    "monkey",
+    "more",
+    "motion",
+    "moved",
+    "movie",
+    "mozilla",
+    "mqtt",
+    "mule",
+    "multi",
+    "multiple",
+    "music",
+    "mustache",
+    "mvc-",
+    "mvc.",
+    "mvc_",
+    "mysql",
+    "nagio",
+    "name",
+    "native",
+    "need",
+    "neo-",
+    "neo.",
+    "neo_",
+    "nest",
+    "nested",
+    "net-",
+    "net.",
+    "net_",
+    "nette",
+    "network",
+    "new-",
+    "new-",
+    "new.",
+    "new.",
+    "new_",
+    "new_",
+    "next",
+    "nginx",
+    "ninja",
+    "nlp-",
+    "nlp.",
+    "nlp_",
+    "node",
+    "nodej",
+    "nosql",
+    "not-",
+    "not.",
+    "not_",
+    "note",
+    "notebook",
+    "notepad",
+    "notice",
+    "notifier",
+    "now-",
+    "now.",
+    "now_",
+    "number",
+    "oauth",
+    "object",
+    "objective",
+    "obsolete",
+    "ocaml",
+    "octopres",
+    "official",
+    "old-",
+    "old.",
+    "old_",
+    "onboard",
+    "online",
+    "only",
+    "open",
+    "opencv",
+    "opengl",
+    "openshift",
+    "openwrt",
+    "option",
+    "oracle",
+    "org-",
+    "org.",
+    "org_",
+    "origin",
+    "original",
+    "orm-",
+    "orm.",
+    "orm_",
+    "osx-",
+    "osx_",
+    "our-",
+    "our.",
+    "our_",
+    "out-",
+    "out.",
+    "out_",
+    "output",
+    "over",
+    "overview",
+    "own-",
+    "own.",
+    "own_",
+    "pack",
+    "package",
+    "packet",
+    "page",
+    "page",
+    "panel",
+    "paper",
+    "paperclip",
+    "para",
+    "parallax",
+    "parallel",
+    "parse",
+    "parser",
+    "parsing",
+    "particle",
+    "party",
+    "password",
+    "patch",
+    "path",
+    "pattern",
+    "payment",
+    "paypal",
+    "pdf-",
+    "pdf.",
+    "pdf_",
+    "pebble",
+    "people",
+    "perl",
+    "personal",
+    "phalcon",
+    "phoenix",
+    "phone",
+    "phonegap",
+    "photo",
+    "php-",
+    "php.",
+    "php_",
+    "physic",
+    "picker",
+    "pipeline",
+    "platform",
+    "play",
+    "player",
+    "please",
+    "plu-",
+    "plu.",
+    "plu_",
+    "plug-in",
+    "plugin",
+    "plupload",
+    "png-",
+    "png.",
+    "png_",
+    "poker",
+    "polyfill",
+    "polymer",
+    "pool",
+    "pop-",
+    "pop.",
+    "pop_",
+    "popcorn",
+    "popup",
+    "port",
+    "portable",
+    "portal",
+    "portfolio",
+    "post",
+    "power",
+    "powered",
+    "powerful",
+    "prelude",
+    "pretty",
+    "preview",
+    "principle",
+    "print",
+    "pro-",
+    "pro.",
+    "pro_",
+    "problem",
+    "proc",
+    "product",
+    "profile",
+    "profiler",
+    "program",
+    "progres",
+    "project",
+    "protocol",
+    "prototype",
+    "provider",
+    "proxy",
+    "public",
+    "pull",
+    "puppet",
+    "pure",
+    "purpose",
+    "push",
+    "pusher",
+    "pyramid",
+    "python",
+    "quality",
+    "query",
+    "queue",
+    "quick",
+    "rabbitmq",
+    "rack",
+    "radio",
+    "rail",
+    "railscast",
+    "random",
+    "range",
+    "raspberry",
+    "rdf-",
+    "rdf.",
+    "rdf_",
+    "react",
+    "reactive",
+    "read",
+    "reader",
+    "readme",
+    "ready",
+    "real",
+    "reality",
+    "real-time",
+    "realtime",
+    "recipe",
+    "recorder",
+    "red-",
+    "red.",
+    "red_",
+    "reddit",
+    "redi",
+    "redmine",
+    "reference",
+    "refinery",
+    "refresh",
+    "registry",
+    "related",
+    "release",
+    "remote",
+    "rendering",
+    "repo",
+    "report",
+    "request",
+    "require",
+    "required",
+    "requirej",
+    "research",
+    "resource",
+    "response",
+    "resque",
+    "rest",
+    "restful",
+    "resume",
+    "reveal",
+    "reverse",
+    "review",
+    "riak",
+    "rich",
+    "right",
+    "ring",
+    "robot",
+    "role",
+    "room",
+    "router",
+    "routing",
+    "rpc-",
+    "rpc.",
+    "rpc_",
+    "rpg-",
+    "rpg.",
+    "rpg_",
+    "rspec",
+    "ruby-",
+    "ruby.",
+    "ruby_",
+    "rule",
+    "run-",
+    "run.",
+    "run_",
+    "runner",
+    "running",
+    "runtime",
+    "rust",
+    "rvm-",
+    "rvm.",
+    "rvm_",
+    "salt",
+    "sample",
+    "sample",
+    "sandbox",
+    "sas-",
+    "sas.",
+    "sas_",
+    "sbt-",
+    "sbt.",
+    "sbt_",
+    "scala",
+    "scalable",
+    "scanner",
+    "schema",
+    "scheme",
+    "school",
+    "science",
+    "scraper",
+    "scratch",
+    "screen",
+    "script",
+    "scroll",
+    "scs-",
+    "scs.",
+    "scs_",
+    "sdk-",
+    "sdk.",
+    "sdk_",
+    "sdl-",
+    "sdl.",
+    "sdl_",
+    "search",
+    "secure",
+    "security",
+    "see-",
+    "see.",
+    "see_",
+    "seed",
+    "select",
+    "selector",
+    "selenium",
+    "semantic",
+    "sencha",
+    "send",
+    "sentiment",
+    "serie",
+    "server",
+    "service",
+    "session",
+    "set-",
+    "set.",
+    "set_",
+    "setting",
+    "setting",
+    "setup",
+    "sha1",
+    "sha2",
+    "sha256",
+    "share",
+    "shared",
+    "sharing",
+    "sheet",
+    "shell",
+    "shield",
+    "shipping",
+    "shop",
+    "shopify",
+    "shortener",
+    "should",
+    "show",
+    "showcase",
+    "side",
+    "silex",
+    "simple",
+    "simulator",
+    "single",
+    "site",
+    "skeleton",
+    "sketch",
+    "skin",
+    "slack",
+    "slide",
+    "slider",
+    "slim",
+    "small",
+    "smart",
+    "smtp",
+    "snake",
+    "snippet",
+    "soap",
+    "social",
+    "socket",
+    "software",
+    "solarized",
+    "solr",
+    "solution",
+    "solver",
+    "some",
+    "soon",
+    "source",
+    "space",
+    "spark",
+    "spatial",
+    "spec",
+    "sphinx",
+    "spine",
+    "spotify",
+    "spree",
+    "spring",
+    "sprite",
+    "sql-",
+    "sql.",
+    "sql_",
+    "sqlite",
+    "ssh-",
+    "ssh.",
+    "ssh_",
+    "stack",
+    "staging",
+    "standard",
+    "stanford",
+    "start",
+    "started",
+    "starter",
+    "startup",
+    "stat",
+    "statamic",
+    "state",
+    "static",
+    "statistic",
+    "statsd",
+    "statu",
+    "steam",
+    "step",
+    "still",
+    "stm-",
+    "stm.",
+    "stm_",
+    "storage",
+    "store",
+    "storm",
+    "story",
+    "strategy",
+    "stream",
+    "streaming",
+    "string",
+    "stripe",
+    "structure",
+    "studio",
+    "study",
+    "stuff",
+    "style",
+    "sublime",
+    "sugar",
+    "suite",
+    "summary",
+    "super",
+    "support",
+    "supported",
+    "svg-",
+    "svg.",
+    "svg_",
+    "svn-",
+    "svn.",
+    "svn_",
+    "swagger",
+    "swift",
+    "switch",
+    "switcher",
+    "symfony",
+    "symphony",
+    "sync",
+    "synopsi",
+    "syntax",
+    "system",
+    "system",
+    "tab-",
+    "tab-",
+    "tab.",
+    "tab.",
+    "tab_",
+    "tab_",
+    "table",
+    "tag-",
+    "tag-",
+    "tag.",
+    "tag.",
+    "tag_",
+    "tag_",
+    "talk",
+    "target",
+    "task",
+    "tcp-",
+    "tcp.",
+    "tcp_",
+    "tdd-",
+    "tdd.",
+    "tdd_",
+    "team",
+    "tech",
+    "template",
+    "term",
+    "terminal",
+    "testing",
+    "tetri",
+    "text",
+    "textmate",
+    "theme",
+    "theory",
+    "three",
+    "thrift",
+    "time",
+    "timeline",
+    "timer",
+    "tiny",
+    "tinymce",
+    "tip-",
+    "tip.",
+    "tip_",
+    "title",
+    "todo",
+    "todomvc",
+    "token",
+    "tool",
+    "toolbox",
+    "toolkit",
+    "top-",
+    "top.",
+    "top_",
+    "tornado",
+    "touch",
+    "tower",
+    "tracker",
+    "tracking",
+    "traffic",
+    "training",
+    "transfer",
+    "translate",
+    "transport",
+    "tree",
+    "trello",
+    "try-",
+    "try.",
+    "try_",
+    "tumblr",
+    "tut-",
+    "tut.",
+    "tut_",
+    "tutorial",
+    "tweet",
+    "twig",
+    "twitter",
+    "type",
+    "typo",
+    "ubuntu",
+    "uiview",
+    "ultimate",
+    "under",
+    "unit",
+    "unity",
+    "universal",
+    "unix",
+    "update",
+    "updated",
+    "upgrade",
+    "upload",
+    "uploader",
+    "uri-",
+    "uri.",
+    "uri_",
+    "url-",
+    "url.",
+    "url_",
+    "usage",
+    "usb-",
+    "usb.",
+    "usb_",
+    "use-",
+    "use.",
+    "use_",
+    "used",
+    "useful",
+    "user",
+    "using",
+    "util",
+    "utilitie",
+    "utility",
+    "vagrant",
+    "validator",
+    "value",
+    "variou",
+    "varnish",
+    "version",
+    "via-",
+    "via.",
+    "via_",
+    "video",
+    "view",
+    "viewer",
+    "vim-",
+    "vim.",
+    "vim_",
+    "vimrc",
+    "virtual",
+    "vision",
+    "visual",
+    "vpn",
+    "want",
+    "warning",
+    "watch",
+    "watcher",
+    "wave",
+    "way-",
+    "way.",
+    "way_",
+    "weather",
+    "web-",
+    "web_",
+    "webapp",
+    "webgl",
+    "webhook",
+    "webkit",
+    "webrtc",
+    "website",
+    "websocket",
+    "welcome",
+    "welcome",
+    "what",
+    "what'",
+    "when",
+    "where",
+    "which",
+    "why-",
+    "why.",
+    "why_",
+    "widget",
+    "wifi",
+    "wiki",
+    "win-",
+    "win.",
+    "win_",
+    "window",
+    "wip-",
+    "wip.",
+    "wip_",
+    "within",
+    "without",
+    "wizard",
+    "word",
+    "wordpres",
+    "work",
+    "worker",
+    "workflow",
+    "working",
+    "workshop",
+    "world",
+    "wrapper",
+    "write",
+    "writer",
+    "writing",
+    "written",
+    "www-",
+    "www.",
+    "www_",
+    "xamarin",
+    "xcode",
+    "xml-",
+    "xml.",
+    "xml_",
+    "xmpp",
+    "xxxxxx",
+    "yahoo",
+    "yaml",
+    "yandex",
+    "yeoman",
+    "yet-",
+    "yet.",
+    "yet_",
+    "yii-",
+    "yii.",
+    "yii_",
+    "youtube",
+    "yui-",
+    "yui.",
+    "yui_",
+    "zend",
+    "zero",
+    "zip-",
+    "zip.",
+    "zip_",
+    "zsh-",
+    "zsh.",
+    "zsh_",
+]
+
+[[rules]]
+id = "Detected GitHub Application Token"
+description = "The scanner has detected the presence of a GitHub Application Token embedded in the codebase. This token is typically used for authentication in GitHub App integrations, enabling a wide range of actions within repositories. If exposed, it could potentially compromise the security and integrity of your GitHub applications and associated source code. It is crucial to handle such tokens with strict confidentiality to maintain the security posture of your software development environment."
+regex = '''(ghu|ghs)_[0-9a-zA-Z]{36}'''
+keywords = [
+    "ghu_","ghs_",
+]
+
+[[rules]]
+id = "Detected GitHub Fine-Grained Personal Access Token"
+description = "The scanner has detected a GitHub Fine-Grained Personal Access Token within the codebase. These tokens are designed for more granular permissions compared to traditional Personal Access Tokens, providing tailored access to specific repositories and actions. However, if such tokens are not properly secured or are inadvertently exposed, they could pose a significant risk by potentially allowing unauthorized access to repositories, leading to unauthorized code alterations or data exposure. Ensuring the secure handling and storage of these tokens is paramount to safeguard the integrity of your codebase and repository access controls."
+regex = '''github_pat_[0-9a-zA-Z_]{82}'''
+keywords = [
+    "github_pat_",
+]
+
+[[rules]]
+id = "Detected GitHub OAuth Access Token"
+description = "The scanner has detected a GitHub OAuth Access Token within the codebase. These tokens are integral to the OAuth authentication process, facilitating third-party integrations and interactions with GitHub accounts and services. While they enable powerful integrations, their exposure can lead to significant security vulnerabilities, potentially compromising the associated GitHub account integrations and leading to unauthorized data access or data leaks. Proper management and protection of OAuth Access Tokens are crucial to prevent unauthorized access and maintain the integrity and security of your integrations and data."
+regex = '''gho_[0-9a-zA-Z]{36}'''
+keywords = [
+    "gho_",
+]
+
+[[rules]]
+id = "Detected GitHub Personal Access Token"
+description = "The scanner has detected a GitHub Personal Access Token embedded in the codebase. These tokens are used to authenticate to GitHub, providing access to repositories and enabling various operations within them. If exposed, these tokens could lead to unauthorized repository access and potential exposure of sensitive content. It is crucial for the security and confidentiality of your codebase that these Personal Access Tokens are handled with utmost care and stored securely to prevent unauthorized access and safeguard sensitive information."
+regex = '''ghp_[0-9a-zA-Z]{36}'''
+keywords = [
+    "ghp_",
+]
+
+[[rules]]
+id = "Detected GitHub Refresh Token"
+description = "The scanner has detected a GitHub Refresh Token embedded within the codebase. Refresh tokens are part of the OAuth authentication process, designed to safely extend authentication sessions and maintain access to GitHub services without frequent re-authentication. However, if these tokens are compromised or improperly exposed, they could enable prolonged unauthorized access to GitHub services, potentially leading to security vulnerabilities. Ensuring the secure handling and confidentiality of GitHub Refresh Tokens is vital to prevent unauthorized access and protect the integrity of your GitHub services and data."
+regex = '''ghr_[0-9a-zA-Z]{36}'''
+keywords = [
+    "ghr_",
+]
+
+[[rules]]
+id = "Detected GitLab Personal Access Token"
+description = "The scanner has detected a GitLab Personal Access Token embedded in the codebase. Personal Access Tokens in GitLab are used to grant tailored access to GitLab repositories, allowing various operations and integrations without using a password. If these tokens are not securely managed and accidentally exposed, they could risk unauthorized access to GitLab repositories, leading to potential codebase exposure and security breaches. It is imperative to handle these tokens with the highest level of security to ensure the protection of your repositories and maintain the confidentiality of your codebase."
+regex = '''glpat-[0-9a-zA-Z\-\_]{20}'''
+keywords = [
+    "glpat-",
+]
+
+[[rules]]
+id = "Detected GitLab Pipeline Trigger Token"
+description = "The scanner has detected a GitLab Pipeline Trigger Token within the codebase. These tokens are specifically used to trigger CI/CD pipelines in GitLab, automating code builds, tests, and deployments. If improperly secured or exposed, these tokens could potentially compromise continuous integration workflows and project security, leading to unauthorized pipeline executions or alterations. Ensuring the secure management and storage of Pipeline Trigger Tokens is crucial to maintain the integrity and security of your continuous integration and deployment processes."
+regex = '''glptt-[0-9a-f]{40}'''
+keywords = [
+    "glptt-",
+]
+
+[[rules]]
+id = "Detected GitLab Runner Registration Token"
+description = "The scanner has detected a GitLab Runner Registration Token embedded in the codebase. These tokens are crucial for registering new runners in GitLab, which are agents that automate the execution of CI/CD pipelines. Exposure of these tokens can pose a significant risk to the integrity of your CI/CD pipelines by potentially allowing unauthorized runner registrations, leading to unauthorized access or malicious alterations to the pipeline processes. It is essential to ensure the confidentiality and secure handling of Runner Registration Tokens to protect your CI/CD infrastructure and maintain robust pipeline security."
+regex = '''GR1348941[0-9a-zA-Z\-\_]{20}'''
+keywords = [
+    "gr1348941",
+]
+
+[[rules]]
+id = "Detected Gitter Access Token"
+description = "The scanner has detected a Gitter Access Token within the codebase. These tokens are utilized to authenticate and interact with Gitter's chat and communication services. If these tokens are compromised or inadvertently exposed, it could lead to unauthorized access, potentially compromising private communications and sensitive information shared within the chat services. It is imperative to handle these Access Tokens securely and ensure their confidentiality to safeguard against unauthorized access and protect the integrity of your communication channels."
+regex = '''(?i)(?:gitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9_-]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "gitter",
+]
+
+[[rules]]
+id = "Detected GoCardless API Token"
+description = "The scanner has detected a GoCardless API Token within the codebase. These tokens are integral for interacting with the GoCardless API, facilitating direct debit payment operations and managing financial transactions. If such tokens are exposed or not securely managed, they could potentially risk unauthorized financial transactions and expose sensitive financial data. Ensuring the secure handling, storage, and management of GoCardless API Tokens is critical to prevent unauthorized access and protect the integrity of your payment operations and financial data."
+regex = '''(?i)(?:gocardless)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(live_(?i)[a-z0-9\-_=]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "live_","gocardless",
+]
+
+[[rules]]
+id = "Detected Grafana API Key"
+description = "The scanner has detected a Grafana API Key within the codebase. These keys provide programmatic access to Grafana, a platform widely used for monitoring, visualization, and analysis of data. If these API keys are not securely managed or are inadvertently exposed, they could compromise the integrity of monitoring dashboards and sensitive data analytics, potentially leading to unauthorized access and data breaches. It is crucial to ensure that Grafana API Keys are securely handled and stored to safeguard your data analytics and monitoring infrastructure from unauthorized access and ensure the confidentiality of sensitive data."
+regex = '''(?i)\b(eyJrIjoi[A-Za-z0-9]{70,400}={0,2})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "eyjrijoi",
+]
+
+[[rules]]
+id = "Detected Grafana Cloud API Token"
+description = "The scanner has detected a Grafana Cloud API Token within the codebase. This token is used to authenticate and interact with Grafana Cloud services, which provide advanced monitoring, visualization, and alerting capabilities in a cloud-based environment. If such tokens are compromised or improperly handled, they could risk unauthorized access to your cloud-based monitoring services, potentially leading to data exposure or manipulation. Secure management and storage of Grafana Cloud API Tokens are paramount to protect your monitoring services and ensure the confidentiality and integrity of your data analytics infrastructure."
+regex = '''(?i)\b(glc_[A-Za-z0-9+/]{32,400}={0,2})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "glc_",
+]
+
+[[rules]]
+id = "Detected Grafana Service Account Token"
+description = "The scanner has detected a Grafana Service Account Token within the codebase. These tokens are designed to grant access to Grafana's monitoring services, enabling automated interactions and integrations without the need for individual user credentials. However, if these tokens are not securely managed or are inadvertently exposed, they could pose a significant risk by potentially compromising the security and integrity of your monitoring services and the data they handle. It is crucial to ensure these Service Account Tokens are handled with the utmost care and stored securely to maintain the integrity of your monitoring services and safeguard sensitive data."
+regex = '''(?i)\b(glsa_[A-Za-z0-9]{32}_[A-Fa-f0-9]{8})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "glsa_",
+]
+
+[[rules]]
+id = "Detected HashiCorp Terraform API Token"
+description = "The scanner has detected a HashiCorp Terraform API Token within the codebase. These tokens are utilized to authenticate against Terraform's infrastructure management services, enabling programmatic configuration and orchestration of infrastructure. If these tokens are not securely handled or are exposed, they could potentially lead to unauthorized infrastructure management operations and security breaches. Ensuring the secure handling, storage, and management of Terraform API Tokens is critical to prevent unauthorized access and maintain the integrity and security of your infrastructure management processes."
+regex = '''(?i)[a-z0-9]{14}\.atlasv1\.[a-z0-9\-_=]{60,70}'''
+keywords = [
+    "atlasv1",
+]
+
+[[rules]]
+id = "Detected HashiCorp Terraform Password Field"
+description = "The scanner has detected a HashiCorp Terraform password field within the codebase. These password fields are often used for authenticating and securing access to infrastructure configurations and management operations within Terraform. If these passwords are not properly secured or are inadvertently exposed, they could risk unauthorized access to infrastructure configurations, potentially leading to security breaches and compromise of infrastructure integrity. It is imperative to ensure that Terraform password fields are securely managed, encrypted, and stored, to safeguard against unauthorized access and maintain robust infrastructure security."
+regex = '''(?i)(?:administrator_login_password|password)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}("[a-z0-9=_\-]{8,20}")(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "administrator_login_password","password",
+]
+
+[[rules]]
+id = "Detected Heroku API Key"
+description = "The scanner has detected a Heroku API Key within the codebase. These keys are essential for interacting with Heroku's cloud platform, enabling the deployment, management, and operation of applications in the cloud. If these keys are not securely managed or are inadvertently exposed, they could potentially compromise cloud application deployments and operational security, leading to unauthorized access or manipulation of cloud resources. It is critical to handle Heroku API Keys with utmost care and ensure they are stored securely to protect your cloud infrastructure and maintain the confidentiality and integrity of your cloud-based applications."
+regex = '''(?i)(?:heroku)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "heroku",
+]
+
+[[rules]]
+id = "Detected HubSpot API Token"
+description = "The scanner has detected a HubSpot API Token within the codebase. These tokens are used to authenticate and interact with HubSpot's CRM and marketing services, enabling the management of customer relationships and marketing operations. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to CRM data integrity and lead to unauthorized marketing operations, potentially compromising customer data and marketing strategies. Ensuring the secure handling, storage, and management of HubSpot API Tokens is crucial to protect your CRM and marketing data and maintain the confidentiality and integrity of your customer relationships and marketing activities."
+regex = '''(?i)(?:hubspot)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "hubspot",
+]
+
+[[rules]]
+id = "Detected Hugging Face Access Token"
+description = "The scanner has detected a Hugging Face Access Token within the codebase. These tokens provide authenticated access to Hugging Face, a platform known for hosting and deploying AI models. If these tokens are not securely managed or are inadvertently exposed, they could lead to unauthorized access to AI models and sensitive data, potentially compromising the security and integrity of your AI operations. Ensuring the secure handling, storage, and management of Hugging Face Access Tokens is critical to protect your AI models and safeguard sensitive data associated with them."
+regex = '''(?:^|[\\'"` >=:])(hf_[a-zA-Z]{34})(?:$|[\\'"` <])'''
+entropy = 1
+keywords = [
+    "hf_",
+]
+
+[[rules]]
+id = "Detected Hugging Face Organization API Token"
+description = "The scanner has detected a Hugging Face Organization API Token within the codebase. These tokens are specifically used for accessing and managing resources within Hugging Face at an organizational level, including AI models and datasets. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise AI organization accounts and associated data, leading to unauthorized access and data breaches. Ensuring the secure handling, storage, and management of Hugging Face Organization API Tokens is crucial to protect your organization's AI assets and maintain the confidentiality and integrity of your AI operations and data."
+regex = '''(?:^|[\\'"` >=:\(,)])(api_org_[a-zA-Z]{34})(?:$|[\\'"` <\),])'''
+entropy = 2
+keywords = [
+    "api_org_",
+]
+
+[[rules]]
+id = "Detected Infracost API Token"
+description = "The scanner has detected an Infracost API Token within the codebase. These tokens are used for authenticating with Infracost, a tool that provides cloud cost estimates and helps manage cloud spending. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to cloud cost estimation tools, potentially leading to the exposure or mismanagement of financial data related to cloud spending. Ensuring the secure handling, storage, and management of Infracost API Tokens is essential to protect your cloud cost management tools and safeguard sensitive financial data."
+regex = '''(?i)\b(ico-[a-zA-Z0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "ico-",
+]
+
+[[rules]]
+id = "Detected Intercom API Token"
+description = "The scanner has detected an Intercom API Token within the codebase. These tokens provide programmatic access to Intercom, a platform used for managing customer communications and support services. If these tokens are not securely managed or are inadvertently exposed, they could compromise customer communication channels and lead to data privacy issues, potentially affecting the confidentiality and integrity of customer interactions. Ensuring the secure handling, storage, and management of Intercom API Tokens is crucial to protect your communication channels and maintain the privacy and security of customer data."
+regex = '''(?i)(?:intercom)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{60})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "intercom",
+]
+
+[[rules]]
+id = "Detected JFrog API Key"
+description = "The scanner has detected a JFrog API Key within the codebase. These keys enable programmatic access to JFrog's suite of DevOps solutions, including software artifact repositories and build pipelines. If these keys are not securely managed or are inadvertently exposed, they could pose a risk of unauthorized access to these critical DevOps components, potentially compromising the integrity of build pipelines and software artifact repositories. Ensuring the secure handling, storage, and management of JFrog API Keys is essential to safeguard your DevOps infrastructure and maintain the security and integrity of your software development lifecycle."
+regex = '''(?i)(?:jfrog|artifactory|bintray|xray)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{73})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "jfrog","artifactory","bintray","xray",
+]
+
+[[rules]]
+id = "Detected JFrog Identity Token"
+description = "The scanner has detected a JFrog Identity Token within the codebase. These tokens are used for authenticating and authorizing access to JFrog services, a platform known for managing and distributing software artifacts. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise access to JFrog services and sensitive software artifacts, risking the security and integrity of your software supply chain. Ensuring the secure handling, storage, and management of JFrog Identity Tokens is critical to protect your JFrog services and safeguard sensitive software artifacts and configurations."
+regex = '''(?i)(?:jfrog|artifactory|bintray|xray)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "jfrog","artifactory","bintray","xray",
+]
+
+[[rules]]
+id = "Detected JSON Web Token (JWT)"
+description = "The scanner has detected a JSON Web Token (JWT) within the codebase. JWTs are widely used for securely transmitting information between parties in web applications, serving as a mechanism for authentication and authorization. If these tokens are not securely managed or are inadvertently exposed, they could lead to unauthorized access to web applications and potentially expose sensitive user data. Ensuring the secure handling, storage, and management of JWTs is crucial to protect your web applications and maintain the confidentiality and integrity of user data and interactions."
+regex = '''\b(ey[a-zA-Z0-9]{17,}\.ey[a-zA-Z0-9\/\\_-]{17,}\.(?:[a-zA-Z0-9\/\\_-]{10,}={0,2})?)(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "ey",
+]
+
+[[rules]]
+id = "Detected Base64-encoded JSON Web Token (JWT)"
+description = "The scanner has detected a Base64-encoded JSON Web Token (JWT) within the codebase. JWTs encoded in Base64 are commonly used in web applications for securely transmitting authentication and data exchange information. However, if these encoded tokens are not securely managed or are inadvertently exposed, they could pose a risk of exposing the encoded contents, potentially compromising authentication mechanisms and sensitive information included in the data exchange. Proper handling and secure storage of Base64-encoded JWTs are essential to prevent unauthorized decoding and protect the integrity of authentication and data exchange processes."
+regex = '''\bZXlK(?:(?P<alg>aGJHY2lPaU)|(?P<apu>aGNIVWlPaU)|(?P<apv>aGNIWWlPaU)|(?P<aud>aGRXUWlPaU)|(?P<b64>aU5qUWlP)|(?P<crit>amNtbDBJanBi)|(?P<cty>amRIa2lPaU)|(?P<epk>bGNHc2lPbn)|(?P<enc>bGJtTWlPaU)|(?P<jku>cWEzVWlPaU)|(?P<jwk>cWQyc2lPb)|(?P<iss>cGMzTWlPaU)|(?P<iv>cGRpSTZJ)|(?P<kid>cmFXUWlP)|(?P<key_ops>clpYbGZiM0J6SWpwY)|(?P<kty>cmRIa2lPaUp)|(?P<nonce>dWIyNWpaU0k2)|(?P<p2c>d01tTWlP)|(?P<p2s>d01uTWlPaU)|(?P<ppt>d2NIUWlPaU)|(?P<sub>emRXSWlPaU)|(?P<svt>emRuUWlP)|(?P<tag>MFlXY2lPaU)|(?P<typ>MGVYQWlPaUp)|(?P<url>MWNtd2l)|(?P<use>MWMyVWlPaUp)|(?P<ver>MlpYSWlPaU)|(?P<version>MlpYSnphVzl1SWpv)|(?P<x>NElqb2)|(?P<x5c>NE5XTWlP)|(?P<x5t>NE5YUWlPaU)|(?P<x5ts256>NE5YUWpVekkxTmlJNkl)|(?P<x5u>NE5YVWlPaU)|(?P<zip>NmFYQWlPaU))[a-zA-Z0-9\/\\_+\-\r\n]{40,}={0,2}'''
+keywords = [
+    "zxlk",
+]
+
+[[rules]]
+id = "Detected Kraken Access Token"
+description = "The scanner has detected a Kraken Access Token within the codebase. These tokens are used to authenticate and interact with Kraken, a prominent platform for cryptocurrency trading. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise cryptocurrency trading accounts and financial security, leading to unauthorized trades or access to sensitive financial information. Ensuring the secure handling, storage, and management of Kraken Access Tokens is critical to protect your trading operations and maintain the confidentiality and security of your financial transactions."
+regex = '''(?i)(?:kraken)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9\/=_\+\-]{80,90})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "kraken",
+]
+
+[[rules]]
+id = "Detected Kucoin Access Token"
+description = "The scanner has detected a Kucoin Access Token within the codebase. These tokens grant programmatic access to Kucoin, a global cryptocurrency exchange platform, allowing users to manage accounts and execute transactions. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to cryptocurrency exchange services and transactions, potentially leading to unauthorized trades or exposure of sensitive financial information. Ensuring the secure handling, storage, and management of Kucoin Access Tokens is crucial to safeguard your cryptocurrency transactions and protect your financial data from unauthorized access."
+regex = '''(?i)(?:kucoin)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{24})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "kucoin",
+]
+
+[[rules]]
+id = "Detected Kucoin Secret Key"
+description = "The scanner has detected a Kucoin Secret Key within the codebase. Secret Keys, in conjunction with Access Tokens, are used for secure authentication and operation within Kucoin, a comprehensive cryptocurrency exchange platform. If these keys are not adequately protected or are exposed, they could lead to compromised cryptocurrency operations and potential financial data breaches, risking the security and integrity of your financial transactions. Ensuring the secure handling, storage, and management of Kucoin Secret Keys is paramount to protect your cryptocurrency operations and safeguard sensitive financial information."
+regex = '''(?i)(?:kucoin)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "kucoin",
+]
+
+[[rules]]
+id = "Detected Launchdarkly Access Token"
+description = "The scanner has detected a Launchdarkly Access Token within the codebase. These tokens are crucial for interacting with Launchdarkly, a platform that provides feature flag management for dynamic control over application functionality. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise feature flag management, leading to unintended application behavior or exposing control over application functionalities. Ensuring the secure handling, storage, and management of Launchdarkly Access Tokens is essential to protect your feature flag configurations and maintain the integrity and reliability of your application's functionality."
+regex = '''(?i)(?:launchdarkly)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "launchdarkly",
+]
+
+[[rules]]
+id = "Detected Linear API Token"
+description = "The scanner has detected a Linear API Token within the codebase. These tokens provide authenticated access to Linear, a platform used for managing projects and tracking tasks. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to project management tools, potentially leading to unauthorized access and exposing sensitive task data. Ensuring the secure handling, storage, and management of Linear API Tokens is crucial to safeguard your project management systems and protect the confidentiality and integrity of your task data and workflows."
+regex = '''lin_api_(?i)[a-z0-9]{40}'''
+keywords = [
+    "lin_api_",
+]
+
+[[rules]]
+id = "Detected Linear Client Secret"
+description = "The scanner has detected a Linear Client Secret within the codebase. Client Secrets, used in conjunction with client IDs, are critical for secure integrations and authentication with Linear's project management platform. If these secrets are not adequately protected or are exposed, they may compromise secure integrations and potentially lead to unauthorized access to sensitive project management data, undermining the security and integrity of your project management systems. Ensuring the secure handling, storage, and management of Linear Client Secrets is paramount to protect your integrations and safeguard sensitive project management information."
+regex = '''(?i)(?:linear)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "linear",
+]
+
+[[rules]]
+id = "Detected LinkedIn Client ID"
+description = "The scanner has detected a LinkedIn Client ID within the codebase. Client IDs are used as part of the authentication process for integrating with LinkedIn's professional networking services. If these IDs are not securely managed or are inadvertently exposed, they could risk unauthorized access to LinkedIn integrations, potentially leading to professional data exposure or manipulation. Ensuring the secure handling, storage, and management of LinkedIn Client IDs is crucial to protect your integrations and maintain the confidentiality and integrity of professional data associated with LinkedIn services."
+regex = '''(?i)(?:linkedin|linked-in)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{14})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "linkedin","linked-in",
+]
+
+[[rules]]
+id = "Detected LinkedIn Client Secret"
+description = "The scanner has detected a LinkedIn Client Secret within the codebase. Client Secrets, in conjunction with Client IDs, form the foundation for secure authentication and authorization in LinkedIn application integrations. If these secrets are not adequately protected or are exposed, they could potentially compromise LinkedIn application integrations and lead to unauthorized access to user data, risking the security and privacy of user information. Ensuring the secure handling, storage, and management of LinkedIn Client Secrets is crucial to safeguard your application integrations and protect sensitive user data associated with LinkedIn services."
+regex = '''(?i)(?:linkedin|linked-in)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{16})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "linkedin","linked-in",
+]
+
+[[rules]]
+id = "Detected Lob API Key"
+description = "The scanner has detected a Lob API Key within the codebase. These keys provide programmatic access to Lob, a platform known for mailing services and address verification. If these keys are not securely managed or are inadvertently exposed, they could lead to unauthorized access to mailing and address verification services, potentially compromising the confidentiality and integrity of mailing operations. Ensuring the secure handling, storage, and management of Lob API Keys is essential to protect your mailing services and maintain the accuracy and privacy of your address verification processes."
+regex = '''(?i)(?:lob)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}((live|test)_[a-f0-9]{35})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "test_","live_",
+]
+
+[[rules]]
+id = "Detected Lob Publishable API Key"
+description = "The scanner has detected a Lob Publishable API Key within the codebase. Publishable API Keys are used for client-side interactions with Lob, a service that automates mail and print operations. While designed for less sensitive tasks, if these publishable keys are not securely managed or are inadvertently exposed, they could pose a risk by exposing mail and print service integrations to unauthorized use. Ensuring the secure handling and storage of Lob Publishable API Keys is important to safeguard your client-side integrations and protect the integrity of your mail and print services."
+regex = '''(?i)(?:lob)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}((test|live)_pub_[a-f0-9]{31})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "test_pub","live_pub","_pub",
+]
+
+[[rules]]
+id = "Detected Mailchimp API Key"
+description = "The scanner has detected a Mailchimp API Key within the codebase. These keys provide programmatic access to Mailchimp, a platform widely used for email marketing and managing subscriber lists. If these keys are not securely managed or are inadvertently exposed, they could potentially compromise email marketing campaigns and lead to unauthorized access to subscriber data. Ensuring the secure handling, storage, and management of Mailchimp API Keys is crucial to protect your marketing campaigns and maintain the confidentiality and integrity of your subscriber data."
+regex = '''(?i)(?:mailchimp)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{32}-us20)(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "mailchimp",
+]
+
+[[rules]]
+id = "Detected Mailgun Private API Token"
+description = "The scanner has detected a Mailgun Private API Token within the codebase. These tokens are used for secure interactions with Mailgun, a service providing reliable email delivery and management. If these private API tokens are not securely managed or are inadvertently exposed, they could risk unauthorized email service operations, potentially leading to data breaches and compromise of email communications. Ensuring the secure handling, storage, and management of Mailgun Private API Tokens is essential to protect your email services and safeguard against unauthorized access and data breaches."
+regex = '''(?i)(?:mailgun)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(key-[a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "mailgun",
+]
+
+[[rules]]
+id = "Detected Mailgun Public Validation Key"
+description = "The scanner has detected a Mailgun Public Validation Key within the codebase. These keys are used primarily for validating email data publicly without exposing sensitive operations. While they are intended for less sensitive tasks, if these public validation keys are not securely managed or are inadvertently exposed, they could potentially expose email verification processes and associated data, leading to vulnerabilities in email validation systems. Ensuring the secure handling and storage of Mailgun Public Validation Keys is important to safeguard your email verification processes and protect the integrity of associated data."
+regex = '''(?i)(?:mailgun)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(pubkey-[a-f0-9]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "mailgun",
+]
+
+[[rules]]
+id = "Detected Mailgun Webhook Signing Key"
+description = "The scanner has detected a Mailgun Webhook Signing Key within the codebase. These keys are crucial for verifying the authenticity of webhooks from Mailgun, ensuring secure automation and handling of email operations. If these signing keys are not securely managed or are inadvertently exposed, they could potentially compromise the integrity of email automation processes and the data handled by these webhooks. Ensuring the secure handling, storage, and management of Mailgun Webhook Signing Keys is essential to protect your email automation systems and maintain the integrity and security of your data processing."
+regex = '''(?i)(?:mailgun)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-h0-9]{32}-[a-h0-9]{8}-[a-h0-9]{8})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "mailgun",
+]
+
+[[rules]]
+id = "Detected Mapbox API Token"
+description = "The scanner has detected a Mapbox API Token within the codebase. These tokens are used to authenticate and interact with Mapbox, a platform providing rich geospatial services and mapping solutions. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to geospatial services and potentially lead to sensitive location data exposure, compromising the privacy and integrity of location-based information. Ensuring the secure handling, storage, and management of Mapbox API Tokens is crucial to protect your mapping and geospatial services and safeguard sensitive location data."
+regex = '''(?i)(?:mapbox)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(pk\.[a-z0-9]{60}\.[a-z0-9]{22})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "mapbox",
+]
+
+[[rules]]
+id = "Detected Mattermost Access Token"
+description = "The scanner has detected a Mattermost Access Token within the codebase. These tokens provide programmatic access to Mattermost, a platform for team collaboration and communication. If these tokens are not securely managed or are inadvertently exposed, they may compromise team communication channels, potentially leading to data privacy issues and unauthorized access to private conversations. Ensuring the secure handling, storage, and management of Mattermost Access Tokens is essential to protect your communication channels and maintain the confidentiality and security of team interactions and data."
+regex = '''(?i)(?:mattermost)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{26})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "mattermost",
+]
+
+[[rules]]
+id = "Detected MessageBird API Token"
+description = "The scanner has detected a MessageBird API Token within the codebase. These tokens are used to authenticate and interact with MessageBird, a platform offering robust communication services such as SMS, voice, and chat. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to communication platforms, potentially compromising message data and the integrity of communication services. Ensuring the secure handling, storage, and management of MessageBird API Tokens is crucial to safeguard your communication platforms and protect the confidentiality and integrity of your message data."
+regex = '''(?i)(?:messagebird|message-bird|message_bird)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{25})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "messagebird","message-bird","message_bird",
+]
+
+[[rules]]
+id = "Detected MessageBird Client ID"
+description = "The scanner has detected a MessageBird Client ID within the codebase. Client IDs are used as part of the authentication process for API integrations with MessageBird's communication services. If these Client IDs are not securely managed or are inadvertently exposed, they could potentially compromise API integrations and lead to unauthorized access to sensitive communication data, risking the security and privacy of your communication channels. Ensuring the secure handling, storage, and management of MessageBird Client IDs is crucial to protect your API integrations and maintain the confidentiality and integrity of communication data."
+regex = '''(?i)(?:messagebird|message-bird|message_bird)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "messagebird","message-bird","message_bird",
+]
+
+[[rules]]
+id = "Detected Microsoft Teams Webhook"
+description = "The scanner has detected a Microsoft Teams Webhook within the codebase. These webhooks are utilized for integrating external applications with Microsoft Teams, enabling automated notifications and interactions within team collaboration tools. If these webhooks are not securely managed or are inadvertently exposed, they could lead to unauthorized access to team collaboration tools, potentially resulting in data leaks and compromising the integrity of team communications. Ensuring the secure handling, storage, and management of Microsoft Teams Webhooks is crucial to protect your collaboration environment and safeguard sensitive team data and interactions."
+regex = '''https:\/\/[a-z0-9]+\.webhook\.office\.com\/webhookb2\/[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}@[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}\/IncomingWebhook\/[a-z0-9]{32}\/[a-z0-9]{8}-([a-z0-9]{4}-){3}[a-z0-9]{12}'''
+keywords = [
+    "webhook.office.com","webhookb2","incomingwebhook",
+]
+
+[[rules]]
+id = "Detected Netlify Access Token"
+description = "The scanner has detected a Netlify Access Token within the codebase. These tokens provide programmatic access to Netlify, a platform used for hosting and automating web projects. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise web hosting services and site management, leading to unauthorized access or manipulation of web resources. Ensuring the secure handling, storage, and management of Netlify Access Tokens is critical to protect your web hosting infrastructure and maintain the integrity and security of your site management operations."
+regex = '''(?i)(?:netlify)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{40,46})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "netlify",
+]
+
+[[rules]]
+id = "Detected New Relic Ingest Browser API Token"
+description = "The scanner has detected a New Relic Ingest Browser API Token within the codebase. These tokens are used for sending browser data to New Relic, a platform that offers application performance monitoring and analytics. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to application performance data and analytics, potentially compromising the confidentiality and integrity of performance insights. Ensuring the secure handling, storage, and management of New Relic Ingest Browser API Tokens is crucial to protect your application performance data and maintain the security and reliability of your analytics."
+regex = '''(?i)(?:new-relic|newrelic|new_relic)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(NRJS-[a-f0-9]{19})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "nrjs-",
+]
+
+[[rules]]
+id = "Detected New Relic User API ID"
+description = "The scanner has detected a New Relic User API ID within the codebase. These IDs are associated with user accounts in New Relic, a service offering application performance monitoring and analytics. If these User API IDs are not securely managed or are inadvertently exposed, they could pose a risk to application monitoring services, potentially leading to unauthorized access and affecting the integrity of monitoring data and analytics. Ensuring the secure handling, storage, and management of New Relic User API IDs is essential to protect your application monitoring services and maintain the confidentiality and integrity of your data."
+regex = '''(?i)(?:new-relic|newrelic|new_relic)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "new-relic","newrelic","new_relic",
+]
+
+[[rules]]
+id = "Detected New Relic User API Key"
+description = "The scanner has detected a New Relic User API Key within the codebase. These keys are critical for authorizing user-level operations and interactions with New Relic's application performance monitoring and insights services. If these keys are not securely managed or are inadvertently exposed, they could lead to compromised application insights and performance monitoring, potentially affecting the integrity and confidentiality of performance data. Ensuring the secure handling, storage, and management of New Relic User API Keys is paramount to protect your application insights and maintain the security and reliability of your performance monitoring infrastructure."
+regex = '''(?i)(?:new-relic|newrelic|new_relic)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(NRAK-[a-z0-9]{27})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "nrak",
+]
+
+[[rules]]
+id = "Detected npm Access Token"
+description = "The scanner has detected an npm Access Token within the codebase. These tokens are used for authenticating and interacting with npm, a package manager for JavaScript and Node.js, enabling package management and access to code repositories. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise package management operations and code repository access, leading to unauthorized package publications or access to private packages. Ensuring the secure handling, storage, and management of npm Access Tokens is crucial to protect your package management infrastructure and maintain the integrity and security of your code repositories."
+regex = '''(?i)\b(npm_[a-z0-9]{36})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "npm_",
+]
+
+[[rules]]
+id = "Detected Nytimes Access Token"
+description = "The scanner has detected a Nytimes Access Token within the codebase. These tokens provide programmatic access to New York Times APIs, enabling the retrieval and integration of news content and services. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to New York Times APIs and content services, potentially compromising the integrity and confidentiality of news data and content integrations. Ensuring the secure handling, storage, and management of Nytimes Access Tokens is essential to protect your access to New York Times content services and maintain the security and integrity of your content integrations."
+regex = '''(?i)(?:nytimes|new-york-times,|newyorktimes)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "nytimes","new-york-times","newyorktimes",
+]
+
+[[rules]]
+id = "Detected Okta Access Token"
+description = "The scanner has detected an Okta Access Token within the codebase. These tokens are crucial for interacting with Okta, a comprehensive identity management service, facilitating user authentication and access control. If these tokens are not securely managed or are inadvertently exposed, they may compromise identity management services and lead to unauthorized access or exposure of user authentication data. Ensuring the secure handling, storage, and management of Okta Access Tokens is critical to protect your identity management infrastructure and maintain the confidentiality and integrity of user authentication data."
+regex = '''(?i)(?:okta)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9=_\-]{42})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "okta",
+]
+
+[[rules]]
+id = "Detected OpenAI API Key"
+description = "The scanner has detected an OpenAI API Key within the codebase. These keys grant programmatic access to OpenAI's services, providing powerful AI-driven operations and data processing capabilities. If these keys are not securely managed or are inadvertently exposed, they could pose a risk of unauthorized access to AI services, potentially leading to data manipulation or misuse of AI models. Ensuring the secure handling, storage, and management of OpenAI API Keys is crucial to protect your AI services and safeguard against unauthorized data interactions and manipulations."
+regex = '''(?i)\b(sk-[a-zA-Z0-9]{20}T3BlbkFJ[a-zA-Z0-9]{20})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "t3blbkfj",
+]
+
+[[rules]]
+id = "Detected Plaid API Token"
+description = "The scanner has detected a Plaid API Token within the codebase. These tokens are used to authenticate and interact with Plaid, a platform that provides financial data aggregation and connectivity with banking services. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise the security of financial data aggregation and banking services, leading to unauthorized access to financial accounts or sensitive financial information. Ensuring the secure handling, storage, and management of Plaid API Tokens is essential to protect your financial services and maintain the confidentiality and integrity of financial data."
+regex = '''(?i)(?:plaid)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(access-(?:sandbox|development|production)-[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "plaid",
+]
+
+[[rules]]
+id = "Detected Plaid Client ID"
+description = "The scanner has detected a Plaid Client ID within the codebase. Client IDs are used as part of the authentication process for integrating with Plaid's financial services, providing access to financial data and operations. If these Client IDs are not securely managed or are inadvertently exposed, they could lead to unauthorized financial service integrations and potential data breaches, compromising the security and confidentiality of financial data and integrations. Ensuring the secure handling, storage, and management of Plaid Client IDs is crucial to protect your financial integrations and safeguard sensitive financial information."
+regex = '''(?i)(?:plaid)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{24})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+entropy = 3.5
+keywords = [
+    "plaid",
+]
+
+[[rules]]
+id = "Detected Plaid Secret Key"
+description = "The scanner has detected a Plaid Secret Key within the codebase. Secret Keys, in conjunction with Client IDs, form the backbone of secure authentication for Plaid's financial services, enabling access to financial accounts and transaction data. If these keys are not adequately protected or are exposed, they could risk unauthorized access to financial accounts and sensitive transaction data, potentially compromising the security and confidentiality of financial operations. Ensuring the secure handling, storage, and management of Plaid Secret Keys is paramount to safeguard your financial services and protect sensitive transaction data."
+regex = '''(?i)(?:plaid)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{30})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+entropy = 3.5
+keywords = [
+    "plaid",
+]
+
+[[rules]]
+id = "Detected PlanetScale API Token"
+description = "The scanner has detected a PlanetScale API Token within the codebase. These tokens are used for authenticating and interacting with PlanetScale, a platform providing scalable database solutions and management services. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise database management and operations, leading to unauthorized access or manipulation of database resources. Ensuring the secure handling, storage, and management of PlanetScale API Tokens is crucial to protect your database infrastructure and maintain the integrity and security of your database operations."
+regex = '''(?i)\b(pscale_tkn_(?i)[a-z0-9=\-_\.]{32,64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "pscale_tkn_",
+]
+
+[[rules]]
+id = "Detected PlanetScale OAuth Token"
+description = "The scanner has detected a PlanetScale OAuth Token within the codebase. These tokens are part of the OAuth authentication process, granting secure and controlled access to PlanetScale's database services. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to database access control, potentially compromising sensitive data integrity and database security. Ensuring the secure handling, storage, and management of PlanetScale OAuth Tokens is essential to protect your database access controls and maintain the confidentiality and integrity of your sensitive data and database operations."
+regex = '''(?i)\b(pscale_oauth_(?i)[a-z0-9=\-_\.]{32,64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "pscale_oauth_",
+]
+
+[[rules]]
+id = "Detected PlanetScale Password"
+description = "The scanner has detected a PlanetScale Password within the codebase. These passwords are used for securing access to PlanetScale, a platform offering scalable database services. If these passwords are not adequately protected or are exposed, they could lead to unauthorized database operations and potential data breaches, compromising the security and integrity of your database systems. Ensuring the secure handling, encryption, and storage of PlanetScale Passwords is crucial to safeguard your database services and protect against unauthorized access and data breaches."
+regex = '''(?i)\b(pscale_pw_(?i)[a-z0-9=\-_\.]{32,64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "pscale_pw_",
+]
+
+[[rules]]
+id = "Detected Postman API Token"
+description = "The scanner has detected a Postman API Token within the codebase. These tokens are used for authenticating and integrating with Postman, a platform extensively used for API testing and development. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise API testing and development workflows, leading to unauthorized access or disruption of API development processes. Ensuring the secure handling, storage, and management of Postman API Tokens is crucial to protect your API development environment and maintain the integrity and security of your API testing and development workflows."
+regex = '''(?i)\b(PMAK-(?i)[a-f0-9]{24}\-[a-f0-9]{34})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "pmak-",
+]
+
+[[rules]]
+id = "Detected Prefect API Token"
+description = "The scanner has detected a Prefect API Token within the codebase. These tokens are essential for interacting with Prefect, a platform known for workflow management and automation services. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to workflow management and automation services, potentially compromising the orchestration and execution of automated workflows. Ensuring the secure handling, storage, and management of Prefect API Tokens is crucial to safeguard your workflow automation infrastructure and maintain the confidentiality and integrity of your automated processes."
+regex = '''(?i)\b(pnu_[a-z0-9]{36})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "pnu_",
+]
+
+[[rules]]
+id = "Detected Private Key"
+description = "The scanner has detected a Private Key within the codebase. Private Keys are fundamental components of cryptographic systems, used for securing communications, authenticating identities, and ensuring data encryption. If these keys are not adequately protected or are exposed, they may compromise cryptographic security, potentially leading to unauthorized access or decryption of sensitive data. Ensuring the secure handling, storage, and management of Private Keys is critical to safeguard cryptographic systems and maintain the confidentiality and integrity of sensitive data encryption."
+regex = '''(?i)-----BEGIN[ A-Z0-9_-]{0,100}PRIVATE KEY( BLOCK)?-----[\s\S-]*KEY( BLOCK)?----'''
+keywords = [
+    "-----begin",
+]
+
+[[rules]]
+id = "Detected Pulumi API Token"
+description = "The scanner has detected a Pulumi API Token within the codebase. These tokens provide programmatic access to Pulumi, a platform for infrastructure as code (IaC) services, enabling the management and deployment of cloud resources. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to IaC services and cloud resource management, potentially leading to unauthorized access or mismanagement of cloud infrastructure. Ensuring the secure handling, storage, and management of Pulumi API Tokens is essential to protect your infrastructure as code services and maintain the integrity and security of your cloud resource management."
+regex = '''(?i)\b(pul-[a-f0-9]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "pul-",
+]
+
+[[rules]]
+id = "Detected PyPI Upload Token"
+description = "The scanner has detected a PyPI Upload Token within the codebase. These tokens are used for authenticating and uploading packages to the Python Package Index (PyPI), a repository for Python software. If these upload tokens are not securely managed or are inadvertently exposed, they could potentially compromise Python package distribution and affect the integrity of the repository, leading to unauthorized package uploads or manipulations. Ensuring the secure handling, storage, and management of PyPI Upload Tokens is crucial to protect your package distribution process and maintain the integrity and security of the Python Package Index."
+regex = '''pypi-AgEIcHlwaS5vcmc[A-Za-z0-9\-_]{50,1000}'''
+keywords = [
+    "pypi-ageichlwas5vcmc",
+]
+
+[[rules]]
+id = "Detected RapidAPI Access Token"
+description = "The scanner has detected a RapidAPI Access Token within the codebase. These tokens are used for authenticating and accessing a multitude of APIs hosted on RapidAPI, a platform that aggregates various data services and APIs. If these access tokens are not securely managed or are inadvertently exposed, they could lead to unauthorized access to a wide array of APIs and data services, potentially compromising data integrity and service security. Ensuring the secure handling, storage, and management of RapidAPI Access Tokens is essential to protect your access to APIs and safeguard against unauthorized use of data services."
+regex = '''(?i)(?:rapidapi)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9_-]{50})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "rapidapi",
+]
+
+[[rules]]
+id = "Detected Readme API Token"
+description = "The scanner has detected a Readme API Token within the codebase. These tokens are used for interacting with Readme, a platform that offers documentation management and hosting services. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized documentation management and lead to content exposure, potentially compromising the confidentiality and integrity of your documentation. Ensuring the secure handling, storage, and management of Readme API Tokens is crucial to protect your documentation infrastructure and maintain the security and privacy of your content."
+regex = '''(?i)\b(rdme_[a-z0-9]{70})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "rdme_",
+]
+
+[[rules]]
+id = "Detected Rubygem API Token"
+description = "The scanner has detected a Rubygem API Token within the codebase. These tokens are essential for authenticating and managing operations on Rubygems, a package manager and distribution platform for Ruby libraries. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise Ruby library distribution and package management, leading to unauthorized modifications or distribution of packages. Ensuring the secure handling, storage, and management of Rubygem API Tokens is crucial to protect your library distribution processes and maintain the integrity and security of your package management."
+regex = '''(?i)\b(rubygems_[a-f0-9]{48})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "rubygems_",
+]
+
+[[rules]]
+id = "Detected Scalingo API Token"
+description = "The scanner has detected a Scalingo API Token within the codebase. These tokens provide programmatic access to Scalingo, a cloud platform offering services for application deployment and scaling. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to cloud platform services and compromise application deployment security, potentially leading to unauthorized access or manipulation of application environments. Ensuring the secure handling, storage, and management of Scalingo API Tokens is essential to protect your cloud platform services and maintain the integrity and security of your application deployment processes."
+regex = '''\btk-us-[a-zA-Z0-9-_]{48}\b'''
+keywords = [
+    "tk-us-",
+]
+
+[[rules]]
+id = "Detected Sendbird Access ID"
+description = "The scanner has detected a Sendbird Access ID within the codebase. These IDs are used for authenticating and integrating with Sendbird, a platform offering chat and messaging services. If these Access IDs are not securely managed or are inadvertently exposed, they could compromise chat and messaging platform integrations, potentially leading to unauthorized access or disruption of communication services. Ensuring the secure handling, storage, and management of Sendbird Access IDs is crucial to protect your chat and messaging integrations and maintain the confidentiality and integrity of your communication platforms."
+regex = '''(?i)(?:sendbird)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "sendbird",
+]
+
+[[rules]]
+id = "Detected Sendbird Access Token"
+description = "The scanner has detected a Sendbird Access Token within the codebase. These tokens provide authenticated access to Sendbird's communication services, enabling secure interactions and management of user messaging features. If these tokens are not securely managed or are inadvertently exposed, they could potentially risk unauthorized access to communication services, leading to exposure or misuse of user data. Ensuring the secure handling, storage, and management of Sendbird Access Tokens is essential to safeguard your communication services and protect the confidentiality and security of user data."
+regex = '''(?i)(?:sendbird)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "sendbird",
+]
+
+[[rules]]
+id = "Detected SendGrid API Token"
+description = "The scanner has detected a SendGrid API Token within the codebase. These tokens are used for authenticating and interacting with SendGrid, a platform known for robust email service operations. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk of unauthorized email service operations, potentially leading to data exposure or compromise of email communications. Ensuring the secure handling, storage, and management of SendGrid API Tokens is critical to protect your email services and maintain the confidentiality and integrity of your email communications and associated data."
+regex = '''(?i)\b(SG\.(?i)[a-z0-9=_\-\.]{66})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "sg.",
+]
+
+[[rules]]
+id = "Detected Sendinblue API Token"
+description = "The scanner has detected a Sendinblue API Token within the codebase. These tokens provide programmatic access to Sendinblue, a service used for email marketing and managing subscriber lists. If these tokens are not securely managed or are inadvertently exposed, they may compromise email marketing services and lead to potential breaches of subscriber data privacy, risking the confidentiality and integrity of customer information. Ensuring the secure handling, storage, and management of Sendinblue API Tokens is crucial to protect your marketing services and maintain the privacy and security of your subscriber data."
+regex = '''(?i)\b(xkeysib-[a-f0-9]{64}\-(?i)[a-z0-9]{16})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "xkeysib-",
+]
+
+[[rules]]
+id = "Detected Sentry Access Token"
+description = "The scanner has detected a Sentry Access Token within the codebase. These tokens are used for authenticating and interacting with Sentry, a platform that offers error tracking and monitoring for applications. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to error tracking services, potentially leading to exposure of sensitive application data and compromising the integrity of your monitoring systems. Ensuring the secure handling, storage, and management of Sentry Access Tokens is crucial to protect your error tracking services and maintain the confidentiality and security of your application data."
+regex = '''(?i)(?:sentry)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "sentry",
+]
+
+[[rules]]
+id = "Detected Shippo API Token"
+description = "The scanner has detected a Shippo API Token within the codebase. These tokens provide programmatic access to Shippo, a platform for managing shipping services and customer orders. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise shipping services and customer order data, risking the integrity and confidentiality of shipping operations and customer information. Ensuring the secure handling, storage, and management of Shippo API Tokens is essential to protect your shipping services and maintain the privacy and security of your customer order data."
+regex = '''(?i)\b(shippo_(live|test)_[a-f0-9]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "shippo_",
+]
+
+[[rules]]
+id = "Detected Shopify Access Token"
+description = "The scanner has detected a Shopify Access Token within the codebase. These tokens are used to authenticate and interact with Shopify, a leading e-commerce platform, enabling the management of online stores and sales operations. If these tokens are not securely managed or are inadvertently exposed, they could lead to unauthorized e-commerce platform access, potentially resulting in data breaches and compromising the security of store data and customer information. Ensuring the secure handling, storage, and management of Shopify Access Tokens is crucial to protect your e-commerce operations and maintain the confidentiality and integrity of your store data and customer information."
+regex = '''shpat_[a-fA-F0-9]{32}'''
+keywords = [
+    "shpat_",
+]
+
+[[rules]]
+id = "Detected Shopify Custom Access Token"
+description = "The scanner has detected a Shopify Custom Access Token within the codebase. These custom tokens are specifically generated for authenticated interactions with custom app integrations on Shopify, a prominent e-commerce platform. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise custom app integrations and e-commerce data security, leading to unauthorized access or manipulation of e-commerce operations and sensitive data. Ensuring the secure handling, storage, and management of Shopify Custom Access Tokens is essential to protect your custom integrations and maintain the security and integrity of your e-commerce data."
+regex = '''shpca_[a-fA-F0-9]{32}'''
+keywords = [
+    "shpca_",
+]
+
+[[rules]]
+id = "Detected Shopify Private App Access Token"
+description = "The scanner has detected a Shopify Private App Access Token within the codebase. These tokens grant authenticated access to private apps within Shopify's e-commerce platform, enabling specialized store operations and data interactions. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to private app data and store operations, potentially compromising the functionality and security of your private apps and associated e-commerce activities. Ensuring the secure handling, storage, and management of Shopify Private App Access Tokens is crucial to protect your private app integrations and maintain the confidentiality and integrity of your store operations and data."
+regex = '''shppa_[a-fA-F0-9]{32}'''
+keywords = [
+    "shppa_",
+]
+
+[[rules]]
+id = "Detected Shopify Shared Secret"
+description = "The scanner has detected a Shopify Shared Secret within the codebase. Shared secrets are used as part of the authentication process for integrating applications with Shopify's e-commerce platform. If these shared secrets are not securely managed or are inadvertently exposed, they could pose a risk to application authentication, potentially compromising e-commerce platform security and leading to unauthorized access or data breaches. Ensuring the secure handling, storage, and management of Shopify Shared Secrets is essential to safeguard your application integrations and maintain the security and integrity of your e-commerce platform."
+regex = '''shpss_[a-fA-F0-9]{32}'''
+keywords = [
+    "shpss_",
+]
+
+[[rules]]
+id = "Detected Sidekiq Secret"
+description = "The scanner has detected a Sidekiq Secret within the codebase. These secrets are crucial for securing Sidekiq, a background job processing tool used in Ruby applications. If these secrets are not adequately protected or are exposed, they could lead to compromised background job processing, potentially resulting in application data breaches and affecting the integrity of background operations. Ensuring the secure handling, storage, and management of Sidekiq Secrets is critical to safeguard your background job processing and protect against unauthorized access and data breaches."
+regex = '''(?i)(?:BUNDLE_ENTERPRISE__CONTRIBSYS__COM|BUNDLE_GEMS__CONTRIBSYS__COM)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-f0-9]{8}:[a-f0-9]{8})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "bundle_enterprise__contribsys__com","bundle_gems__contribsys__com",
+]
+
+[[rules]]
+id = "Detected Sidekiq Sensitive URL"
+description = "The scanner has detected a Sidekiq Sensitive URL within the codebase. These URLs provide access to Sidekiq's web interface, exposing internal job queues and sensitive operation details. If these URLs are not securely managed or are inadvertently exposed, they could potentially expose sensitive information related to background job processing, risking the integrity and confidentiality of your application's operations. Ensuring the secure handling, storage, and management of Sidekiq Sensitive URLs is essential to protect your internal job queues and maintain the security and privacy of your operation details."
+regex = '''(?i)\b(http(?:s??):\/\/)([a-f0-9]{8}:[a-f0-9]{8})@(?:gems.contribsys.com|enterprise.contribsys.com)(?:[\/|\#|\?|:]|$)'''
+secretGroup = 2
+keywords = [
+    "gems.contribsys.com","enterprise.contribsys.com",
+]
+
+[[rules]]
+id = "Detected Slack App Token"
+description = "The scanner has detected a Slack App Token within the codebase. These tokens are used for authenticating and enabling integrations at the app level within Slack workspaces. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to Slack applications and workspace data, potentially compromising the security and integrity of workspace communications and app functionalities. Ensuring the secure handling, storage, and management of Slack App Tokens is crucial to protect your Slack integrations and maintain the confidentiality and integrity of your workspace data and applications."
+regex = '''(?i)(xapp-\d-[A-Z0-9]+-\d+-[a-z0-9]+)'''
+keywords = [
+    "xapp",
+]
+
+[[rules]]
+id = "Detected Slack Bot Token"
+description = "The scanner has detected a Slack Bot Token within the codebase. These tokens are essential for operating and integrating bots within Slack, enabling automated interactions and functionalities in communication channels. If these tokens are not securely managed or are inadvertently exposed, they may compromise bot integrations and the security of communication channels, potentially leading to unauthorized access or misuse of bot functionalities. Ensuring the secure handling, storage, and management of Slack Bot Tokens is critical to protect your bot integrations and maintain the security and integrity of your communication channels."
+regex = '''(xoxb-[0-9]{10,13}\-[0-9]{10,13}[a-zA-Z0-9-]*)'''
+keywords = [
+    "xoxb",
+]
+
+[[rules]]
+id = "Detected Slack Configuration Access Token"
+description = "The scanner has detected a Slack Configuration Access Token within the codebase. These tokens are used for accessing and managing configuration settings of Slack workspaces, enabling control over integrations, permissions, and workspace settings. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to workspace configuration and lead to unauthorized access to sensitive data, potentially compromising workspace security and data privacy. Ensuring the secure handling, storage, and management of Slack Configuration Access Tokens is crucial to protect your workspace configurations and safeguard against unauthorized access to sensitive data."
+regex = '''(?i)(xoxe.xox[bp]-\d-[A-Z0-9]{163,166})'''
+keywords = [
+    "xoxe.xoxb-","xoxe.xoxp-",
+]
+
+[[rules]]
+id = "Detected Slack Configuration Refresh Token"
+description = "The scanner has detected a Slack Configuration Refresh Token within the codebase. These tokens are part of the authentication process, used to renew access to Slack's configuration settings without requiring user re-authentication. If these refresh tokens are not securely managed or are inadvertently exposed, they could potentially allow prolonged unauthorized access to configuration settings, risking the security and integrity of workspace configurations. Ensuring the secure handling, storage, and management of Slack Configuration Refresh Tokens is essential to prevent prolonged unauthorized access and protect the integrity of your configuration settings."
+regex = '''(?i)(xoxe-\d-[A-Z0-9]{146})'''
+keywords = [
+    "xoxe-",
+]
+
+[[rules]]
+id = "Detected Slack Legacy Bot Token"
+description = "The scanner has detected a Slack Legacy Bot Token within the codebase. These tokens are used for operating legacy bots within Slack, facilitating automated interactions and functionalities in older integration setups. If these tokens are not securely managed or are inadvertently exposed, they could lead to compromised legacy bot operations and potential data exposure, risking the security and integrity of your Slack bot interactions and associated data. Ensuring the secure handling, storage, and management of Slack Legacy Bot Tokens is crucial to protect your legacy bot operations and maintain the confidentiality and integrity of your communication channels and data."
+regex = '''(xoxb-[0-9]{8,14}\-[a-zA-Z0-9]{18,26})'''
+keywords = [
+    "xoxb",
+]
+
+[[rules]]
+id = "Detected Slack Legacy Token"
+description = "The scanner has detected a Slack Legacy Token within the codebase. These tokens were historically used for accessing and interacting with older Slack integrations, enabling functionalities within Slack workspaces. If these legacy tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to older Slack integrations and potentially lead to exposure of user data, compromising the security and integrity of your Slack integrations and associated data. Ensuring the secure handling, storage, and management of Slack Legacy Tokens is critical to protect your older integrations and safeguard sensitive user data."
+regex = '''(xox[os]-\d+-\d+-\d+-[a-fA-F\d]+)'''
+keywords = [
+    "xoxo","xoxs",
+]
+
+[[rules]]
+id = "Detected Slack Legacy Workspace Token"
+description = "The scanner has detected a Slack Legacy Workspace Token within the codebase. These tokens provide authenticated access to legacy features and data within Slack workspaces. If these legacy workspace tokens are not securely managed or are inadvertently exposed, they could potentially compromise access to workspace data and legacy features, risking the privacy and integrity of workspace interactions and historical data. Ensuring the secure handling, storage, and management of Slack Legacy Workspace Tokens is crucial to protect your workspace data and maintain the security and functionality of your legacy Slack features."
+regex = '''(xox[ar]-(?:\d-)?[0-9a-zA-Z]{8,48})'''
+keywords = [
+    "xoxa","xoxr",
+]
+
+[[rules]]
+id = "Detected Slack User Token"
+description = "The scanner has detected a Slack User Token within the codebase. These tokens are associated with individual user accounts in Slack, granting authenticated access and enabling user-specific interactions within Slack workspaces. If these user tokens are not securely managed or are inadvertently exposed, they could pose a risk of unauthorized user impersonation and access to data within Slack workspaces, potentially compromising the security and privacy of user communications and data. Ensuring the secure handling, storage, and management of Slack User Tokens is essential to protect against unauthorized impersonation and safeguard sensitive data within your Slack workspaces."
+regex = '''(xox[pe](?:-[0-9]{10,13}){3}-[a-zA-Z0-9-]{28,34})'''
+keywords = [
+    "xoxp-","xoxe-",
+]
+
+[[rules]]
+id = "Detected Slack Webhook URL"
+description = "The scanner has detected a Slack Webhook URL within the codebase. These webhooks are used for sending automated messages to Slack channels, enabling integrations with external services. If these webhook URLs are not securely managed or are inadvertently exposed, they could lead to unauthorized message posting and data leakage in Slack channels, potentially compromising the integrity and confidentiality of channel communications. Ensuring the secure handling, storage, and management of Slack Webhook URLs is crucial to protect your Slack channels and prevent unauthorized interactions and data exposure."
+regex = '''(https?:\/\/)?hooks.slack.com\/(services|workflows)\/[A-Za-z0-9+\/]{43,46}'''
+keywords = [
+    "hooks.slack.com",
+]
+
+[[rules]]
+id = "Detected Snyk API Token"
+description = "The scanner has detected a Snyk API Token within the codebase. These tokens are used for interacting with Snyk, a platform that provides software vulnerability scanning and code security services. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise the effectiveness of software vulnerability scanning and the security of your codebase, leading to overlooked vulnerabilities or unauthorized access. Ensuring the secure handling, storage, and management of Snyk API Tokens is crucial to maintain the integrity and security of your software vulnerability scanning processes and protect your codebase."
+regex = '''(?i)(?:snyk_token|snyk_key|snyk_api_token|snyk_api_key|snyk_oauth_token)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "snyk_token","snyk_key","snyk_api_token","snyk_api_key","snyk_oauth_token",
+]
+
+[[rules]]
+id = "Detected Square Access Token"
+description = "The scanner has detected a Square Access Token within the codebase. These tokens provide authenticated access to Square, a platform known for payment processing and financial transaction services. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized payment processing and expose financial transactions, potentially compromising the security and confidentiality of financial data. Ensuring the secure handling, storage, and management of Square Access Tokens is essential to protect your payment processing services and safeguard sensitive financial transaction information."
+regex = '''(?i)\b(sq0atp-[0-9A-Za-z\-_]{22})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "sq0atp-",
+]
+
+[[rules]]
+id = "Detected Squarespace Access Token"
+description = "The scanner has detected a Squarespace Access Token within the codebase. These tokens are used for authenticating and interacting with Squarespace, a platform that offers website management and content control services. If these tokens are not securely managed or are inadvertently exposed, they may compromise the integrity of website management and content control on Squarespace, potentially leading to unauthorized access or content manipulation. Ensuring the secure handling, storage, and management of Squarespace Access Tokens is crucial to protect your website services and maintain the security and integrity of your content control and management processes."
+regex = '''(?i)(?:squarespace)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "squarespace",
+]
+
+[[rules]]
+id = "Detected Stripe Access Token"
+description = "The scanner has detected a Stripe Access Token within the codebase. These tokens provide programmatic access to Stripe, a widely-used platform for online payment processing services. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to payment processing services, potentially leading to unauthorized access to sensitive financial data and compromising the security of financial transactions. Ensuring the secure handling, storage, and management of Stripe Access Tokens is critical to protect your payment processing services and maintain the confidentiality and integrity of sensitive financial data."
+regex = '''(?i)\b((sk)_(test|live)_[0-9a-z]{10,32})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "sk_test","sk_live",
+]
+
+[[rules]]
+id = "Detected SumoLogic Access ID"
+description = "The scanner has detected a SumoLogic Access ID within the codebase. These IDs are used to authenticate access to SumoLogic, a cloud-based log management and analytics service. If these Access IDs are not securely managed or are inadvertently exposed, they could potentially compromise log management services and the integrity of data analytics, leading to unauthorized access or manipulation of log data. Ensuring the secure handling, storage, and management of SumoLogic Access IDs is essential to protect your log management infrastructure and maintain the confidentiality and integrity of your data analytics."
+regex = '''(?i:(?:sumo)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3})(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(su[a-zA-Z0-9]{12})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+entropy = 3
+keywords = [
+    "sumo",
+]
+
+[rules.allowlist]
+
+regexTarget = "line"
+regexes = [
+    "sumOf",
+]
+
+[[rules]]
+id = "Detected SumoLogic Access Token"
+description = "The scanner has detected a SumoLogic Access Token within the codebase. These tokens provide authenticated access to SumoLogic, a platform for log management and data analytics. If these tokens are not securely managed or are inadvertently exposed, they could lead to unauthorized access to log data and analytics insights, potentially compromising the security and integrity of your log management and data analytics operations. Ensuring the secure handling, storage, and management of SumoLogic Access Tokens is critical to safeguard your log data and protect the confidentiality and reliability of your analytics insights."
+regex = '''(?i)(?:sumo)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{64})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+entropy = 3
+keywords = [
+    "sumo",
+]
+
+[[rules]]
+id = "Detected Telegram Bot API Token"
+description = "The scanner has detected a Telegram Bot API Token within the codebase. These tokens are used to authenticate and enable operations of bots within the Telegram messaging platform. If these tokens are not securely managed or are inadvertently exposed, they could risk unauthorized bot operations and potentially lead to message interception or manipulation on Telegram. Ensuring the secure handling, storage, and management of Telegram Bot API Tokens is crucial to protect your bot integrations and maintain the confidentiality and integrity of message interactions on Telegram."
+regex = '''(?i)(?:^|[^0-9])([0-9]{5,16}:A[a-zA-Z0-9_\-]{34})(?:$|[^a-zA-Z0-9_\-])'''
+keywords = [
+    "telegram","api","bot","token","url",
+]
+
+[[rules]]
+id = "Detected Travis CI Access Token"
+description = "The scanner has detected a Travis CI Access Token within the codebase. These tokens are essential for authenticating and interacting with Travis CI, a platform used for continuous integration and deployment services. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise continuous integration services and the security of your codebase, leading to unauthorized access or manipulation of your build processes. Ensuring the secure handling, storage, and management of Travis CI Access Tokens is crucial to protect your continuous integration infrastructure and maintain the integrity and security of your codebase."
+regex = '''(?i)(?:travis)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{22})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "travis",
+]
+
+[[rules]]
+id = "Detected Twilio API Key"
+description = "The scanner has detected a Twilio API Key within the codebase. These keys provide programmatic access to Twilio, a platform offering a wide range of communication services such as SMS, voice calls, and video interactions. If these API keys are not securely managed or are inadvertently exposed, they could pose a risk to communication services, potentially leading to unauthorized access and compromising sensitive customer interaction data. Ensuring the secure handling, storage, and management of Twilio API Keys is essential to protect your communication services and maintain the confidentiality and integrity of customer interaction data."
+regex = '''SK[0-9a-fA-F]{32}'''
+keywords = [
+    "twilio",
+]
+
+[[rules]]
+id = "Detected Twitch API Token"
+description = "The scanner has detected a Twitch API Token within the codebase. These tokens are used to authenticate and integrate with Twitch, a leading platform for live streaming services. If these tokens are not securely managed or are inadvertently exposed, they could compromise streaming services and account integrations, potentially affecting the integrity and privacy of streaming content and viewer interactions. Ensuring the secure handling, storage, and management of Twitch API Tokens is essential to protect your streaming services and maintain the confidentiality and security of account integrations."
+regex = '''(?i)(?:twitch)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{30})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "twitch",
+]
+
+[[rules]]
+id = "Detected Twitter Access Secret"
+description = "The scanner has detected a Twitter Access Secret within the codebase. Access Secrets, paired with Access Tokens, are used for secure authentication in Twitter integrations, allowing controlled access to Twitter accounts and functionalities. If these secrets are not adequately protected or are exposed, they could risk unauthorized Twitter integrations and potential data breaches, compromising the security and privacy of Twitter account data. Ensuring the secure handling, storage, and management of Twitter Access Secrets is crucial to protect your Twitter integrations and safeguard sensitive account data."
+regex = '''(?i)(?:twitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{45})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "twitter",
+]
+
+[[rules]]
+id = "Detected Twitter Access Token"
+description = "The scanner has detected a Twitter Access Token within the codebase. These tokens provide authenticated access to Twitter accounts, enabling a range of operations and interactions on the social media platform. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk of unauthorized account operations and social media data exposure, potentially compromising the privacy and integrity of user interactions and data. Ensuring the secure handling, storage, and management of Twitter Access Tokens is essential to protect your social media operations and maintain the confidentiality and security of user data."
+regex = '''(?i)(?:twitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([0-9]{15,25}-[a-zA-Z0-9]{20,40})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "twitter",
+]
+
+[[rules]]
+id = "Detected Twitter API Key"
+description = "The scanner has detected a Twitter API Key within the codebase. These keys are fundamental for integrating and authenticating with Twitter's API, facilitating the development of applications that interact with Twitter services. If these API keys are not securely managed or are inadvertently exposed, they may compromise Twitter application integrations and user data security, risking unauthorized access or data breaches. Ensuring the secure handling, storage, and management of Twitter API Keys is critical to protect your application integrations and maintain the confidentiality and integrity of user data."
+regex = '''(?i)(?:twitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{25})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "twitter",
+]
+
+[[rules]]
+id = "Detected Twitter API Secret"
+description = "The scanner has detected a Twitter API Secret within the codebase. API Secrets, in conjunction with API Keys, form the core of secure authentication for Twitter app integrations. If these secrets are not adequately protected or are exposed, they could risk the security of Twitter app integrations and sensitive data access, potentially leading to unauthorized operations or data breaches. Ensuring the secure handling, storage, and management of Twitter API Secrets is paramount to safeguard your app integrations and protect sensitive user data."
+regex = '''(?i)(?:twitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{50})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "twitter",
+]
+
+[[rules]]
+id = "Detected Twitter Bearer Token"
+description = "The scanner has detected a Twitter Bearer Token within the codebase. Bearer Tokens are used for accessing Twitter's API, enabling data retrieval and integration with Twitter services. If these tokens are not securely managed or are inadvertently exposed, they could potentially compromise API access and data retrieval from Twitter, risking the privacy and integrity of data interactions. Ensuring the secure handling, storage, and management of Twitter Bearer Tokens is essential to protect your API access and maintain the confidentiality and security of data retrieved from Twitter."
+regex = '''(?i)(?:twitter)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(A{22}[a-zA-Z0-9%]{80,100})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "twitter",
+]
+
+[[rules]]
+id = "Detected Typeform API Token"
+description = "The scanner has detected a Typeform API Token within the codebase. These tokens provide programmatic access to Typeform, a platform for creating and managing surveys and forms. If these tokens are not securely managed or are inadvertently exposed, they could lead to unauthorized survey management and data collection, potentially compromising the confidentiality and integrity of collected data. Ensuring the secure handling, storage, and management of Typeform API Tokens is essential to protect your data collection processes and maintain the security of your survey management."
+regex = '''(?i)(?:typeform)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(tfp_[a-z0-9\-_\.=]{59})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "tfp_",
+]
+
+[[rules]]
+id = "Detected Vault Batch Token"
+description = "The scanner has detected a Vault Batch Token within the codebase. These tokens are used for temporary, high-performance access to HashiCorp Vault's secret management services. If these batch tokens are not securely managed or are inadvertently exposed, they could risk unauthorized access to secret management services and sensitive data, potentially compromising data security and credential management. Ensuring the secure handling, storage, and management of Vault Batch Tokens is crucial to protect your secret management infrastructure and safeguard sensitive data."
+regex = '''(?i)\b(hvb\.[a-z0-9_-]{138,212})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "hvb",
+]
+
+[[rules]]
+id = "Detected Vault Service Token"
+description = "The scanner has detected a Vault Service Token within the codebase. These tokens are used for authenticated interactions with HashiCorp Vault, a tool for securing, storing, and controlling access to tokens, passwords, and other secrets. If these service tokens are not securely managed or are inadvertently exposed, they could potentially compromise infrastructure security and access to sensitive credentials, risking data integrity and security. Ensuring the secure handling, storage, and management of Vault Service Tokens is crucial to safeguard your infrastructure and protect sensitive credentials."
+regex = '''(?i)\b(hvs\.[a-z0-9_-]{90,100})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "hvs",
+]
+
+[[rules]]
+id = "Detected Yandex Access Token"
+description = "The scanner has detected a Yandex Access Token within the codebase. These tokens provide authenticated access to Yandex services, facilitating integration and user data interactions. If these tokens are not securely managed or are inadvertently exposed, they could pose a risk to Yandex service integrations and user data privacy, potentially compromising the security and confidentiality of user interactions and data. Ensuring the secure handling, storage, and management of Yandex Access Tokens is essential to protect your service integrations and maintain user data privacy."
+regex = '''(?i)(?:yandex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(t1\.[A-Z0-9a-z_-]+[=]{0,2}\.[A-Z0-9a-z_-]{86}[=]{0,2})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "yandex",
+]
+
+[[rules]]
+id = "Detected Yandex API Key"
+description = "The scanner has detected a Yandex API Key within the codebase. These keys are used for programmatic access to Yandex services, enabling a wide range of functionalities and data interactions. If these API keys are not securely managed or are inadvertently exposed, they could lead to unauthorized access to Yandex services and data manipulation, risking the integrity and confidentiality of data and services. Ensuring the secure handling, storage, and management of Yandex API Keys is crucial to safeguard your access to Yandex services and protect against data manipulation."
+regex = '''(?i)(?:yandex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(AQVN[A-Za-z0-9_\-]{35,38})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "yandex",
+]
+
+[[rules]]
+id = "Detected Yandex AWS Access Token"
+description = "The scanner has detected a Yandex AWS Access Token within the codebase. These tokens grant access to Yandex Cloud services, providing control over cloud resources and data. If these access tokens are not securely managed or are inadvertently exposed, they could potentially compromise cloud resource access and data security on Yandex Cloud, risking unauthorized access and data breaches. Ensuring the secure handling, storage, and management of Yandex AWS Access Tokens is essential to protect your cloud resources and maintain data security on Yandex Cloud."
+regex = '''(?i)(?:yandex)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}(YC[a-zA-Z0-9_\-]{38})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "yandex",
+]
+
+[[rules]]
+id = "Detected Zendesk Secret Key"
+description = "The scanner has detected a Zendesk Secret Key within the codebase. These keys are crucial for securing access to Zendesk's customer support services, including ticketing and customer interaction management. If these secret keys are not securely managed or are inadvertently exposed, they could risk unauthorized access to customer support services and sensitive ticketing data, potentially compromising the privacy and integrity of customer interactions. Ensuring the secure handling, storage, and management of Zendesk Secret Keys is crucial to protect your customer support services and safeguard sensitive data."
+regex = '''(?i)(?:zendesk)(?:[0-9a-z\-_\t .]{0,20})(?:[\s|']|[\s|"]){0,3}(?:=|>|:{1,3}=|\|\|:|<=|=>|:|\?=)(?:'|\"|\s|=|\x60){0,5}([a-z0-9]{40})(?:['|\"|\n|\r|\s|\x60|;]|$)'''
+keywords = [
+    "zendesk",
+]
