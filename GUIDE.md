@@ -44,9 +44,13 @@ secret-exposure-analysis/
     |   ├── logger.py
     |   └── models.py
     |
-    └── service/
+    ├── service/
+    |   ├── __init__.py
+    |   └── gitleaks.py
+    |
+    └── support/
         ├── __init__.py
-        └── gitleaks.py
+        └── enums.py
 ```
 
 ## Building the Docker Image

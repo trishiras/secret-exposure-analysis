@@ -21,7 +21,7 @@ class SecretExposureAnalysis(object):
     def run(self):
 
         logger.info(
-            f"Started generating secret exposure analysis for target :- {self.target}"
+            f"Started generating secret exposure analysis report for target :- {self.target}"
         )
 
         if self.webhook:
@@ -56,7 +56,7 @@ class SecretExposureAnalysis(object):
             json.dump(self.data, fp, indent=4, default=str)
 
         logger.info(
-            f"Finished generating secret exposure analysis for target :- {self.target}"
+            f"Finished generating secret exposure analysis report for target :- {self.target}"
         )
 
 
